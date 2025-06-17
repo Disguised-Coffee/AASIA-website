@@ -27,17 +27,17 @@ export function Header() {
 
   const navLinks = (
     <>
-      <Link href="#about-us-section" passHref>
+      <Link href="/#about-us-section" passHref>
         <Button variant="ghost" className="text-white hover:bg-white/20">
           About Us
         </Button>
       </Link>
-      <Link href="#eboard-info-section" passHref>
+      <Link href="/#eboard-info-section" passHref>
         <Button variant="ghost" className="text-white hover:bg-white/20">
           Eboard Info
         </Button>
       </Link>
-      <Link href="#gallery-section" passHref>
+      <Link href="/gallery" passHref>
         <Button variant="ghost" className="text-white hover:bg-white/20">
           Gallery
         </Button>
@@ -59,21 +59,23 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 p-4 transition-colors duration-300 ease-in-out
-        ${isTransparent ? "bg-black/50" : "bg-black"}
-        flex justify-between items-center`}
+      className=\{`fixed top-0 left-0 right-0 z-50 p-4 transition-colors duration-300 ease-in-out
+        $\{isTransparent ? "bg-black/50" : "bg-black"\}
+        flex justify-between items-center`\}
     >
       <div className="flex items-center">
-        <Image src="/placeholder.svg?height=40&width=40" alt="Club Logo" width={40} height={40} className="mr-2" />
+        <Link href="/" passHref>
+          <Image src="/placeholder.svg?height=40&width=40" alt="Club Logo" width=\{40\} height=\{40\} className="mr-2" />
+        </Link>
         <span className="text-white text-xl font-bold">Club Name</span>
       </div>
 
-      {/* Desktop Navigation */}
-      <nav className="hidden md:flex items-center space-x-4">{navLinks}</nav>
+      \{/* Desktop Navigation */\}
+      <nav className="hidden md:flex items-center space-x-4">\{navLinks\}</nav>
 
-      {/* Mobile Menu Button */}
+      \{/* Mobile Menu Button */\}
       <div className="md:hidden">
-        <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white">
+        <Button variant="ghost" size="icon" onClick=\{() => setIsMenuOpen(!isMenuOpen)\} className="text-white">
           <MenuIcon className="h-6 w-6" />
           <span className="sr-only">Toggle navigation menu</span>
         </Button>

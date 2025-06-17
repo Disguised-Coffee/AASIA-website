@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Facebook, Instagram, Twitter } from "lucide-react"
+import { Facebook, Instagram, Twitter, Youtube, Linkedin } from "lucide-react"
 
 export function Footer() {
   return (
@@ -10,17 +10,17 @@ export function Footer() {
       <div className="container mx-auto flex flex-col items-center space-y-6">
         {/* Navigation Links */}
         <nav className="flex flex-wrap justify-center gap-4 md:gap-8">
-          <Link href="#about-us-section" passHref>
+          <Link href="/#about-us-section" passHref>
             <Button variant="link" className="text-white hover:text-gray-300">
               About Us
             </Button>
           </Link>
-          <Link href="#eboard-info-section" passHref>
+          <Link href="/#eboard-info-section" passHref>
             <Button variant="link" className="text-white hover:text-gray-300">
               Eboard Info
             </Button>
           </Link>
-          <Link href="#gallery-section" passHref>
+          <Link href="/gallery" passHref>
             <Button variant="link" className="text-white hover:text-gray-300">
               Gallery
             </Button>
@@ -41,14 +41,20 @@ export function Footer() {
 
         {/* Social Media Links */}
         <div className="flex space-x-6">
+          <a href="#" aria-label="YouTube" className="text-white hover:text-gray-300 transition-colors">
+            <Youtube className="h-6 w-6" />
+          </a>
           <a href="#" aria-label="Facebook" className="text-white hover:text-gray-300 transition-colors">
             <Facebook className="h-6 w-6" />
+          </a>
+          <a href="#" aria-label="Twitter" className="text-white hover:text-gray-300 transition-colors">
+            <Twitter className="h-6 w-6" />
           </a>
           <a href="#" aria-label="Instagram" className="text-white hover:text-gray-300 transition-colors">
             <Instagram className="h-6 w-6" />
           </a>
-          <a href="#" aria-label="Twitter" className="text-white hover:text-gray-300 transition-colors">
-            <Twitter className="h-6 w-6" />
+          <a href="#" aria-label="LinkedIn" className="text-white hover:text-gray-300 transition-colors">
+            <Linkedin className="h-6 w-6" />
           </a>
         </div>
 
