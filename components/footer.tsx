@@ -1,48 +1,40 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+
 import { Facebook, Instagram, Twitter, Youtube, Linkedin } from "lucide-react"
 
+
 export function Footer() {
+
+  const footerbtns = [
+    { name: "Home", link: "/" },
+    { name: "FAQ", link: "/faq" },
+    { name: "E-Board", link: "/e-board" },
+    { name: "EVO", link: "/evo" },
+    { name: "Gallery", link: "/gallery" },
+  ];
+
   return (
-    <footer className="relative bg-black text-white py-8 px-4">
+    <footer className="relative bg-accent text-white py-8 px-4">
       <div className="container mx-auto flex flex-col items-center space-y-6">
         {/* Navigation Links */}
         <nav className="flex flex-wrap justify-center gap-4 md:gap-8">
-          <Link href="/#about-us-section" passHref>
-            <Button variant="link" className="text-white hover:text-gray-300">
-              About Us
-            </Button>
-          </Link>
-          <Link href="/#eboard-info-section" passHref>
-            <Button variant="link" className="text-white hover:text-gray-300">
-              Eboard Info
-            </Button>
-          </Link>
-          <Link href="/gallery" passHref>
-            <Button variant="link" className="text-white hover:text-gray-300">
-              Gallery
-            </Button>
-          </Link>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="link" className="text-white hover:text-gray-300">
-                Forms
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="bg-black text-white border-gray-700">
-              <DropdownMenuItem className="hover:bg-gray-700 cursor-pointer">Membership Form</DropdownMenuItem>
-              <DropdownMenuItem className="hover:bg-gray-700 cursor-pointer">Event Registration</DropdownMenuItem>
-              <DropdownMenuItem className="hover:bg-gray-700 cursor-pointer">Contact Form</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {
+            footerbtns.map((ele, index) => (
+              <Link href={ele.link} passHref key={index}>
+                <Button variant="link" className="text-white hover:text-gray-300">
+                  {ele.name}
+                </Button>
+              </Link>
+            ))
+          }
         </nav>
 
         {/* Social Media Links */}
         <div className="flex space-x-6">
           <a href="#" aria-label="YouTube" className="text-white hover:text-gray-300 transition-colors">
-            <Youtube className="h-6 w-6" />
+            <Image src="/icons/youtube.svg" width={24} height={24} alt="YouTube" className="h-6 w-6" />
           </a>
           <a href="#" aria-label="Facebook" className="text-white hover:text-gray-300 transition-colors">
             <Facebook className="h-6 w-6" />
@@ -65,7 +57,7 @@ export function Footer() {
       {/* Transparent Gradient Logo */}
       <div className="absolute bottom-4 right-4">
         <Image
-          src="/placeholder.svg?height=80&width=80"
+          src="/aasia logo_white outline.png"
           alt="Club Logo Gradient"
           width={80}
           height={80}

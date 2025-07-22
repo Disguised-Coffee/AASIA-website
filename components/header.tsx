@@ -1,16 +1,19 @@
 "use client"
 
-import { useState, useEffect } from "react"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { MenuIcon } from "lucide-react"
+import { link } from "fs"
+import { useState, useRef, useEffect } from "react"
+import SimpleDropdown from "./ui/dropdown"
 
 export function Header() {
   const [isTransparent, setIsTransparent] = useState(true)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  // FEATURE [] header effect
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 100) {
@@ -25,50 +28,40 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // btw, Next handles links by looking from main path.
+  const navBarBtns = [
+    { name: "FAQ", link: "/faq" },
+    { name: "E-Board", link: "/e-board" },
+    { name: "EVO", link: "/evo" },
+  ];
+
+
+
   const navLinks = (
     <>
-      <Link href="/#about-us-section" passHref>
-        <Button variant="ghost" className="text-white hover:bg-white/20">
-          About Us
-        </Button>
-      </Link>
-      <Link href="/#eboard-info-section" passHref>
-        <Button variant="ghost" className="text-white hover:bg-white/20">
-          Eboard Info
-        </Button>
-      </Link>
-      <Link href="/gallery" passHref>
-        <Button variant="ghost" className="text-white hover:bg-white/20">
-          Gallery
-        </Button>
-      </Link>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="text-white hover:bg-white/20">
-            Forms
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="bg-black text-white border-gray-700">
-          <DropdownMenuItem className="hover:bg-gray-700 cursor-pointer">Membership Form</DropdownMenuItem>
-          <DropdownMenuItem className="hover:bg-gray-700 cursor-pointer">Event Registration</DropdownMenuItem>
-          <DropdownMenuItem className="hover:bg-gray-700 cursor-pointer">Contact Form</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      {
+        navBarBtns.map((ele, index) => (
+          <Link href={ele.link} passHref key={index}>
+            <Button variant="ghost" className="hover:bg-white/20 text-lg">
+              {ele.name}
+            </Button>
+          </Link>
+        ))
+      }
+      <SimpleDropdown/>
     </>
   )
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 p-4 transition-colors duration-300 ease-in-out
-        ${isTransparent ? "bg-black/50" : "bg-black"}
+      className={`fixed top-0 left-0 right-0 z-50 p-2 transition-colors duration-300 ease-in-out bg-primary
+        ${isTransparent ? "bg-primary" : "bg-primary"} 
         flex justify-between items-center`}
     >
-      <div className="flex items-center">
-        <Link href="/" passHref>
-          <Image src="/placeholder.svg?height=40&width=40" alt="Club Logo" width={40} height={40} className="mr-2" />
-        </Link>
-        <span className="text-white text-xl font-bold">Club Name</span>
-      </div>
+      <Link href="/" passHref className="flex items-center ml-10">
+        <Image src="/aasia logo_transparent.png" alt="Club Logo" width={40} height={40} className="mr-6 w-[10vh]" />
+        <Image src="/aasia logo_just-lettering.png" alt="Club Logo" width={40} height={40} className="mr-2 w-[16vh]" />
+      </Link>
 
       {/* Desktop Navigation */}
       <nav className="hidden md:flex items-center space-x-4">{navLinks}</nav>
@@ -83,7 +76,7 @@ export function Header() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <nav className="md:hidden absolute top-full left-0 right-0 bg-black/90 flex flex-col items-end p-4 space-y-2">
+        <nav className="md:hidden text-white absolute top-full left-0 right-0 bg-black/90 flex flex-col items-end p-4 space-y-2">
           {navLinks}
         </nav>
       )}

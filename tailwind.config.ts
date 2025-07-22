@@ -22,7 +22,7 @@ const config: Config = {
   				foreground: 'hsl(var(--popover-foreground))'
   			},
   			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
+  				DEFAULT: 'var(--primary)',
   				foreground: 'hsl(var(--primary-foreground))'
   			},
   			secondary: {
@@ -34,7 +34,7 @@ const config: Config = {
   				foreground: 'hsl(var(--muted-foreground))'
   			},
   			accent: {
-  				DEFAULT: 'hsl(var(--accent))',
+  				DEFAULT: 'var(--accent)',
   				foreground: 'hsl(var(--accent-foreground))'
   			},
   			destructive: {
@@ -88,8 +88,11 @@ const config: Config = {
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out'
+  		},
+		fontFamily: {
+			'primary-ft': ['var(--primary-ft)', 'sans-serif'],
   		}
-  	}
+	}
   },
   plugins: [require("tailwindcss-animate")],
 };
