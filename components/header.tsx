@@ -35,6 +35,12 @@ export function Header() {
     { name: "EVO", link: "/evo" },
   ];
 
+  const galleryLinks = [
+    { name: "Main Gallery", link: "/gallery" },
+    // { name: "Events", link: "/events" },
+    // { name: "Contact", link: "/contact" },
+  ]
+
 
 
   const navLinks = (
@@ -48,7 +54,25 @@ export function Header() {
           </Link>
         ))
       }
-      <SimpleDropdown/>
+      <SimpleDropdown>
+
+        {galleryLinks.map((ele, index) => (
+          <Link href={ele.link} passHref key={index}>
+            <Button variant="ghost" className="w-full justify-start relative flex select-none items-center rounded-sm px-2 py-1.5 text-sm transition-colors hover:bg-gray-100">
+              {ele.name}
+            </Button>
+          </Link>
+        ))}
+        <div>
+          <Button variant="ghost" className="text-xs text-muted-foreground w-full justify-start relative flex select-none items-center rounded-sm px-2 py-1.5 text-sm transition-colors hover:bg-gray-100">
+            More photos soon!
+          </Button>
+        </div>
+
+        {/* <Link href="/contact" passHref>
+          <Button variant="ghost" className="w-full justify-start relative flex select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 pl-8">Contact</Button>
+        </Link> */}
+      </SimpleDropdown>
     </>
   )
 
@@ -58,7 +82,7 @@ export function Header() {
         ${isTransparent ? "bg-primary" : "bg-primary"} 
         flex justify-between items-center`}
     >
-      <Link href="/" passHref className="flex items-center ml-10">
+      <Link href="/" passHref className="flex items-center ml-10 bg-transparent hover:bg-white/10 rounded-xl px-2">
         <Image src="/aasia logo_transparent.png" alt="Club Logo" width={40} height={40} className="mr-6 w-[10vh]" />
         <Image src="/aasia logo_just-lettering.png" alt="Club Logo" width={40} height={40} className="mr-2 w-[16vh]" />
       </Link>

@@ -67,7 +67,7 @@ const DropdownMenuContent = ({ open, children, anchorRef }: { open: boolean, chi
 }
 
 // Usage in navLinks:
-function SimpleDropdown() {
+function SimpleDropdown({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
   const triggerRef = useRef<HTMLButtonElement>(null)
 
@@ -87,12 +87,7 @@ function SimpleDropdown() {
         Gallery
       </DropdownMenuTrigger>
       <DropdownMenuContent open={open} anchorRef={triggerRef}>
-        <Link href="/events" passHref>
-          <Button variant="ghost" className="w-full justify-start relative flex select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 pl-8">Events</Button>
-        </Link>
-        <Link href="/contact" passHref>
-          <Button variant="ghost" className="w-full justify-start relative flex select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 pl-8">Contact</Button>
-        </Link>
+        {children}
       </DropdownMenuContent>
     </DropdownMenu>
   )
