@@ -4,8 +4,11 @@ import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
 import { Sun, Moon, Monitor } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu-old"
-
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent
+} from "./ui/dropdown"
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
@@ -25,7 +28,7 @@ export function ThemeSwitcher() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger>
         <Button variant="outline" size="icon">
           {theme === "light" && <Sun className="h-[1.2rem] w-[1.2rem]" />}
           {theme === "dark" && <Moon className="h-[1.2rem] w-[1.2rem]" />}
