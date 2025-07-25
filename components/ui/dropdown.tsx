@@ -95,4 +95,4 @@ function SimpleDropdown({ children }: { children: React.ReactNode }) {
 
 // Place <SimpleDropdown /> in your navLinks.
 export default SimpleDropdown;
-export { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent }
+// export { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent }
