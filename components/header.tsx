@@ -1,12 +1,10 @@
 "use client"
 
-
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { MenuIcon } from "lucide-react"
-import { link } from "fs"
-import { useState, useRef, useEffect } from "react"
+import { useState, useEffect } from "react"
 import SimpleDropdown from "./ui/dropdown"
 
 export function Header() {
@@ -33,7 +31,7 @@ export function Header() {
     { name: "FAQ", link: "/faq" },
     { name: "E-Board", link: "/e-board" },
     { name: "EVO", link: "/evo" },
-  ];
+  ]
 
   const galleryLinks = [
     { name: "Main Gallery", link: "/gallery" },
@@ -41,30 +39,31 @@ export function Header() {
     // { name: "Contact", link: "/contact" },
   ]
 
-
-
   const navLinks = (
     <>
-      {
-        navBarBtns.map((ele, index) => (
-          <Link href={ele.link} passHref key={index}>
-            <Button variant="ghost" className="hover:bg-white/20 text-lg">
-              {ele.name}
-            </Button>
-          </Link>
-        ))
-      }
+      {navBarBtns.map((ele, index) => (
+        <Link href={ele.link} passHref key={index}>
+          <Button variant="ghost" className="hover:bg-white/20 text-gray-700 hover:text-gray-900 text-lg">
+            {ele.name}
+          </Button>
+        </Link>
+      ))}
       <SimpleDropdown>
-
         {galleryLinks.map((ele, index) => (
           <Link href={ele.link} passHref key={index}>
-            <Button variant="ghost" className="w-full justify-start relative flex select-none items-center rounded-sm px-2 py-1.5 text-sm transition-colors hover:bg-gray-100">
+            <Button
+              variant="ghost"
+              className="w-full justify-start relative flex select-none items-center rounded-sm px-2 py-1.5 text-sm transition-colors hover:bg-gray-100"
+            >
               {ele.name}
             </Button>
           </Link>
         ))}
         <div>
-          <Button variant="ghost" className="text-xs text-muted-foreground w-full justify-start relative flex select-none items-center rounded-sm px-2 py-1.5 text-sm transition-colors hover:bg-gray-100">
+          <Button
+            variant="ghost"
+            className="text-xs text-muted-foreground w-full justify-start relative flex select-none items-center rounded-sm px-2 py-1.5 text-sm transition-colors hover:bg-gray-100"
+          >
             More photos soon!
           </Button>
         </div>
@@ -78,11 +77,11 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 p-2 transition-colors duration-300 ease-in-out bg-primary
-        ${isTransparent ? "bg-primary" : "bg-primary"} 
-        flex justify-between items-center`}
+      className={`fixed top-0 left-0 right-0 z-50 p-2 transition-colors duration-300 ease-in-out
+  ${isTransparent ? "bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100" : "bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100"} 
+  flex justify-between items-center`}
     >
-      <Link href="/" passHref className="flex items-center ml-10 bg-transparent hover:bg-white/10 rounded-xl px-2">
+      <Link href="/" passHref className="flex items-center ml-4 bg-transparent hover:bg-white/10 rounded-xl px-2">
         <Image src="/aasia logo_transparent.png" alt="Club Logo" width={40} height={40} className="mr-6 w-[10vh]" />
         <Image src="/aasia logo_just-lettering.png" alt="Club Logo" width={40} height={40} className="mr-2 w-[16vh]" />
       </Link>
