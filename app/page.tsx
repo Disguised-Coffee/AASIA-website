@@ -4,6 +4,7 @@ import { Footer } from "@/components/footer"
 import { ContentSection } from "@/components/content-section"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function HomePage() {
   return (
@@ -67,51 +68,114 @@ export default function HomePage() {
           backgroundColor="bg-white"
         />
 
-        {/* E-Board Section with Background Photo */}
-        <section
-          className="relative py-20 px-4 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/eboard-background.png')`,
-          }}
-        >
-          <div className="container mx-auto max-w-4xl text-center text-white">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Meet Our Leadership</h2>
-            <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto leading-relaxed">
-              Our dedicated executive board works tirelessly to create meaningful experiences, foster community
-              connections, and advance Asian American awareness on campus. Get to know the passionate leaders driving
-              our mission forward.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                asChild
-                size="lg"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-medium"
-              >
-                <Link href="/e-board">Meet Our E-Board</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-medium bg-transparent"
-              >
-                <Link href="/intern-applications">Join Our Team</Link>
-              </Button>
+        {/* E-Board Section */}
+        <section className="relative bg-gray-50 py-16 px-4 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/placeholder.svg?height=600&width=1200&text=E-Board+Background+Photo"
+              alt="E-Board background"
+              fill
+              style={{ objectFit: "cover" }}
+              className="opacity-20"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-50/90 to-gray-50/70"></div>
+          </div>
+
+          <div className="container mx-auto max-w-6xl relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Content */}
+              <div className="space-y-6">
+                <div>
+                  <div className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">Leadership</div>
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
+                    Meet Our Executive Board
+                  </h2>
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    Our dedicated executive board members work tirelessly to strengthen our community, organize
+                    meaningful events, and advance Asian American awareness on campus. From seasoned leaders to
+                    passionate newcomers, our team brings diverse perspectives and unwavering commitment to AASIA's
+                    mission.
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3">
+                    <Link href="/e-board">Meet the Team</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="lg"
+                    className="border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 bg-transparent"
+                  >
+                    <Link href="/intern-applications">Join Our Team</Link>
+                  </Button>
+                </div>
+              </div>
+
+              {/* Image/Visual Element */}
+              <div className="flex items-center justify-center">
+                <div className="relative w-full max-w-md aspect-square">
+                  <Image
+                    src="/placeholder.svg?height=400&width=400&text=E-Board+Team+Photo"
+                    alt="Executive Board Team"
+                    fill
+                    style={{ objectFit: "cover" }}
+                    className="rounded-lg shadow-xl"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* EVO Section */}
-        <ContentSection
-          title="EVO: Evolution"
-          description="Experience our signature cultural showcase that celebrates Asian American identity, heritage, and artistic expression. EVO brings together diverse voices through powerful performances, storytelling, and creative collaboration, creating a platform for meaningful dialogue about the Asian American experience."
-          buttonText="Explore EVO"
-          buttonHref="/evo"
-          imageSrc="/placeholder.svg?height=500&width=600&text=EVO+Showcase"
-          imageAlt="EVO Cultural Showcase"
-          imageOnRight={false}
-          backgroundColor="bg-gray-50"
-        />
+        <section className="bg-white py-16 px-4">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Image */}
+              <div className="flex items-center justify-center lg:order-1">
+                <div className="relative w-full max-w-md aspect-video">
+                  <Image
+                    src="/placeholder.svg?height=300&width=500&text=EVO+Showcase+Preview"
+                    alt="EVO Cultural Showcase"
+                    fill
+                    style={{ objectFit: "cover" }}
+                    className="rounded-lg shadow-xl"
+                  />
+                  {/* Play button overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-white/90 rounded-full p-4 shadow-lg">
+                      <div className="w-0 h-0 border-l-[20px] border-l-blue-600 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="space-y-6 lg:order-2">
+                <div>
+                  <div className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">
+                    Cultural Showcase
+                  </div>
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
+                    EVO: Evolution
+                  </h2>
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    Experience our signature annual cultural showcase that celebrates Asian American identity through
+                    powerful performances, storytelling, and artistic expression. EVO brings together diverse voices to
+                    share experiences, challenge perspectives, and showcase the evolution of our community.
+                  </p>
+                </div>
+
+                <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3">
+                  <Link href="/evo">Discover EVO</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Join Our Community Section */}
         <ContentSection
@@ -121,8 +185,8 @@ export default function HomePage() {
           buttonHref="#membership"
           imageSrc="/placeholder.svg?height=400&width=400&text=Community+Image"
           imageAlt="Community gathering"
-          imageOnRight={true}
-          backgroundColor="bg-white"
+          imageOnRight={false}
+          backgroundColor="bg-gray-50"
         />
       </main>
 
