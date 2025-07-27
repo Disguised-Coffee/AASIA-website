@@ -39,24 +39,21 @@ export default function EVOPage() {
   ]
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-
-      <main className="flex-1 pt-20">
+    <div className="flex-1 pt-20 flex-col min-h-screen">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-20 px-4">
           <div className="container mx-auto max-w-6xl text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">EVO: Evolution</h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">EVO</h1>
             <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
               Our signature cultural showcase celebrating Asian American experiences, identity, and artistic expression
             </p>
           </div>
         </section>
 
-        {/* Content Section with Image */}
+        {/* Content Section with Image [] ISSUE: breakline in description*/}
         <ContentSection
           title="What is EVO?"
-          description="EVO (Evolution) is AASIA's premier annual cultural showcase that brings together the diverse voices and experiences of the Asian American community. Through powerful performances, storytelling, music, and dance, EVO creates a platform for students to explore and express their cultural identity while educating the broader campus community about Asian American experiences. This transformative event showcases the evolution of Asian American culture and the ongoing journey of identity, belonging, and community building."
+          description="Evolution (or EVO) is AASIA’s no-audition dance group for beginners to advanced. They are dedicated to spreading Asian culture all over UIC. They host practices and perform at AASIA’s Imperial Ball and ImaginAsian. Depending on the progress of the group, they may perform at other events as well! Have any questions? DM us at @evo_aasia on Instagram with any questions you have!"
           buttonText="Learn More About EVO"
           buttonHref="#video-section"
           imageSrc="/placeholder.svg?height=500&width=600&text=EVO+Showcase+Image"
@@ -64,10 +61,10 @@ export default function EVOPage() {
           backgroundColor="bg-white"
         />
 
-        {/* Video Section */}
+        {/* Video Section [] NEEDS BTR DESC*/}
         <VideoSection
-          title="Experience EVO 2024"
-          description="Watch highlights from our most recent EVO showcase, featuring incredible performances and powerful storytelling that celebrates the Asian American experience."
+          title="Experience EVO 2025"
+          description="Sample Description [] :Watch highlights from our most recent EVO showcase, featuring incredible performances and powerful storytelling that celebrates the Asian American experience."
           videoPlaceholder="/placeholder.svg?height=400&width=700&text=EVO+2024+Video+Highlights"
           backgroundColor="bg-gray-50"
         />
@@ -82,7 +79,7 @@ export default function EVOPage() {
         />
 
         {/* Call to Action Section */}
-        <section className="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 py-16 px-4">
+        {/* <section className="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 py-16 px-4">
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Be Part of EVO 2025</h2>
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -98,10 +95,7 @@ export default function EVOPage() {
               </button>
             </div>
           </div>
-        </section>
-      </main>
-
-      <Footer />
+        </section> */}
     </div>
   )
 }

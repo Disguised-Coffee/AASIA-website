@@ -20,7 +20,7 @@ const DropdownMenuTrigger = React.forwardRef<HTMLButtonElement, { children: Reac
   ({ children, onClick }, ref) => (
     <button
       type="button"
-      className="flex items-center px-4 py-2 text-lg bg-transparent hover:bg-white/20 rounded"
+      className="flex items-center px-4 py-2 text-lg bg-transparent hover:bg-white/20 rounded text-black" // dark:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       onClick={onClick}
       ref={ref}
     >

@@ -13,7 +13,7 @@ export default function FAQPage() {
     {
       question: "What 'big' events do you host?",
       answer:
-        "AASIA hosts several major events throughout the year including our Annual Gala, Asian American Heritage Month celebrations, cultural workshops, community service projects, and collaborative events with other student organizations. We also participate in campus-wide events and host educational panels on Asian American issues.",
+        "AASIA hosts several major events throughout the year including our Imperial Ball, ImaginAsian [], Asian American Heritage Month celebrations, cultural workshops, community service projects, and collaborative events with other student organizations. We also participate in campus-wide events and host educational panels on Asian American issues.",
     },
     {
       question: "What makes AASIA different from other student orgs on campus?",
@@ -33,7 +33,7 @@ export default function FAQPage() {
     {
       question: "What is EVO?",
       answer:
-        "EVO (Evolution) is AASIA's annual cultural showcase that celebrates Asian American heritage through performances, art, and storytelling. It's one of our signature events that highlights the diverse talents within our community and educates the campus about Asian American experiences.",
+        "Evolution (or EVO) is AASIA’s no-audition dance group for beginners to advanced. They are dedicated to spreading Asian culture all over UIC. They host practices and perform at AASIA’s Imperial Ball and ImaginAsian. Depending on the progress of the group, they may perform at other events as well!",
     },
   ]
 
@@ -112,43 +112,39 @@ export default function FAQPage() {
   ]
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-1 pt-20">
-        {/* About Section */}
-        <ContentSection
-          label="AASIA"
-          title="About Us"
-          description="Asian American Students in Alliance (AASIA) is the oldest Asian American organization at UIC, founded as a Pan-Asian organization in 1987. We aim to increase Asian American awareness and address issues surrounding the Asian American community through our cultural workshops, events, performances, services, and social gatherings. AASIA provides a place where you can learn more about Asian American identity and awareness."
-          imageSrc="/aasia logo_transparent.png"
-          imageAlt="AASIA Logo"
-          backgroundColor="bg-white"
-        />
+    <div className="flex-1 pt-20 flex-col min-h-screen">
+      {/* About Section */}
+      <ContentSection
+        label="AASIA"
+        title="About Us"
+        description="Asian American Students in Alliance (AASIA) is the oldest Asian American organization at UIC, founded as a Pan-Asian organization in 1987. We aim to increase Asian American awareness and address issues surrounding the Asian American community through our cultural workshops, events, performances, services, and social gatherings. AASIA provides a place where you can learn more about Asian American identity and awareness."
+        imageSrc="/aasia logo_transparent.png"
+        imageAlt="AASIA Logo"
+        backgroundColor="bg-white"
+      />
 
-        {/* FAQ Section */}
-        <section className="bg-white py-16 px-4">
-          <div className="container mx-auto max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-12">
-              Frequently Asked Questions
-            </h1>
+      {/* FAQ Section */}
+      <section className="bg-white py-16 px-4">
+        <div className="container mx-auto max-w-4xl">
+          <h1 className="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-12">
+            Frequently Asked Questions
+          </h1>
 
-            <div className="space-y-12">
-              <FAQSection title="General" faqs={generalFAQs} />
-              <FAQSection title="Membership" faqs={membershipFAQs} />
-              <FAQSection title="Information" faqs={informationFAQs} />
-            </div>
+          <div className="space-y-12">
+            <FAQSection title="General" faqs={generalFAQs} />
+            <FAQSection title="Membership" faqs={membershipFAQs} />
+            <FAQSection title="Information" faqs={informationFAQs} />
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Image Carousel Section */}
-        <section className="bg-gray-50 py-16 px-4">
-          <div className="container mx-auto max-w-6xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Our Community in Action</h2>
-            <ImageCarousel images={carouselImages} />
-          </div>
-        </section>
-      </main>
-
-      <Footer />
+      {/* Image Carousel Section */}
+      <section className="bg-gray-50 py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Our Community in Action</h2>
+          <ImageCarousel images={carouselImages} />
+        </div>
+      </section>
     </div>
   )
 }

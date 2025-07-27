@@ -5,7 +5,7 @@ export default function NotFound() {
     <div className="min-h-screen flex flex-col justify-between pt-20 px-4">
       {/* Main content - positioned in upper portion */}
       <div className="flex-1 flex flex-col items-center justify-center text-center max-w-md mx-auto">
-        <div className="space-y-6">
+        <div className="space-y-2">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4">404</h1>
           <p className="text-lg md:text-xl text-gray-600 mb-8">Page Not Found</p>
           <Link
@@ -18,8 +18,8 @@ export default function NotFound() {
       </div>
 
       {/* Image - fixed at bottom with proper spacing */}
-      <div className="flex justify-center pb-8 mt-8">
-        <div className="w-48 h-48 md:w-64 md:h-64 relative">
+      <div className="flex justify-center absolute bottom-0 left-0 right-0">
+        <div className="w-48 h-30 md:w-64 md:h-30 max-h-md relative">
           <img src="/crying.png" alt="Not Found" className="w-full h-full object-contain" />
         </div>
       </div>

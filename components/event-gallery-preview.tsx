@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Calendar, MapPin, Images } from "lucide-react"
+import Link from "next/link"
 
 interface GalleryImage {
   src: string
@@ -90,17 +91,20 @@ export function EventGalleryPreview({ gallery, reversed = false }: EventGalleryP
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4">
-          <Button
-            size="lg"
-            className="bg-blue-600 hover:bg-blue-700 text-white"
-            onClick={() => {
-              // TODO: CMS Integration - Navigate to dynamic gallery page
-              // Example: router.push(`/gallery/${gallery.slug}`)
-              console.log(`Navigate to gallery: ${gallery.id}`)
-            }}
-          >
-            View Full Gallery
-          </Button>
+          <Link href={`/gallery/${gallery.id}`} passHref>
+            <Button
+              asChild
+              size="lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+              onClick={() => {
+                // TODO: CMS Integration - Navigate to dynamic gallery page
+                // Example: router.push(`/gallery/${gallery.slug}`)
+                console.log(`Navigate to gallery: ${gallery.id}`)
+              }}
+            >
+              View Full Gallery
+            </Button>
+          </Link>
           <Button
             variant="outline"
             size="lg"

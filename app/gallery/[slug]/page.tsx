@@ -65,65 +65,59 @@ export default function GalleryDetailPage({ params }: GalleryDetailPageProps) {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      {/* Gallery Header */}
+      <section className="bg-white py-12 px-4 border-b border-gray-200">
+        <div className="container mx-auto max-w-4xl">
+          <Link
+            href="/gallery"
+            className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-6 font-medium"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Gallery
+          </Link>
 
-      <main className="flex-1 pt-20">
-        {/* Gallery Header */}
-        <section className="bg-white py-12 px-4 border-b border-gray-200">
-          <div className="container mx-auto max-w-4xl">
-            <Link
-              href="/gallery"
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-6 font-medium"
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{gallery.title}</h1>
+
+          <div className="flex flex-col sm:flex-row gap-4 text-gray-600 mb-6">
+            <div className="flex items-center gap-2">
+              <Calendar className="h-5 w-5" />
+              <span>{gallery.date}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <MapPin className="h-5 w-5" />
+              <span>{gallery.location}</span>
+            </div>
+          </div>
+
+          <p className="text-lg text-gray-700 leading-relaxed">{gallery.description}</p>
+        </div>
+      </section>
+
+      {/* Image Carousel */}
+      <section className="bg-gray-50 py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          {/* TODO: CMS Integration - Pass dynamic images from CMS */}
+          <EnhancedImageCarousel images={gallery.images} />
+        </div>
+      </section>
+
+      {/* Gallery Actions */}
+      <section className="bg-white py-12 px-4">
+        <div className="container mx-auto max-w-4xl text-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+              Download All Photos
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-blue-600 text-blue-600 hover:bg-blue-50 bg-transparent"
             >
-              <ArrowLeft className="h-4 w-4" />
-              Back to Gallery
-            </Link>
-
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{gallery.title}</h1>
-
-            <div className="flex flex-col sm:flex-row gap-4 text-gray-600 mb-6">
-              <div className="flex items-center gap-2">
-                <Calendar className="h-5 w-5" />
-                <span>{gallery.date}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="h-5 w-5" />
-                <span>{gallery.location}</span>
-              </div>
-            </div>
-
-            <p className="text-lg text-gray-700 leading-relaxed">{gallery.description}</p>
+              Share Gallery
+            </Button>
           </div>
-        </section>
-
-        {/* Image Carousel */}
-        <section className="bg-gray-50 py-16 px-4">
-          <div className="container mx-auto max-w-6xl">
-            {/* TODO: CMS Integration - Pass dynamic images from CMS */}
-            <EnhancedImageCarousel images={gallery.images} />
-          </div>
-        </section>
-
-        {/* Gallery Actions */}
-        <section className="bg-white py-12 px-4">
-          <div className="container mx-auto max-w-4xl text-center">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-                Download All Photos
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-blue-600 text-blue-600 hover:bg-blue-50 bg-transparent"
-              >
-                Share Gallery
-              </Button>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <Footer />
+        </div>
+      </section>
     </div>
   )
 }

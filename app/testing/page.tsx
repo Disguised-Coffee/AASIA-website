@@ -6,6 +6,11 @@ import { Slideshow } from "@/components/slideshow"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { Alert } from "@/components/ui/alert"
+import { Breadcrumb } from "@/components/ui/breadcrumb"
+import { Calendar } from "@/components/ui/calendar"
+import { Toaster } from "@/components/ui/toaster"
+import { Textarea } from "@/components/ui/textarea"
 
 export default function HomePage() {
   const slideshowImages = [
@@ -104,8 +109,8 @@ export default function HomePage() {
           <h2 className="text-4xl font-bold text-gray-800 dark:text-white">Eboard Info Content</h2>
         </section>
       </main>
-
-      <Footer />
+      <Textarea placeholder="Type your message here..." />
+      {/* <Footer /> */}
     </div>
   )
 }

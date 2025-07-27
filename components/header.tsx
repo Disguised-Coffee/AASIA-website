@@ -43,7 +43,7 @@ export function Header() {
     <>
       {navBarBtns.map((ele, index) => (
         <Link href={ele.link} passHref key={index}>
-          <Button variant="ghost" className="hover:bg-white/20 text-gray-700 hover:text-gray-900 text-lg">
+          <Button variant="ghost" className="hover:bg-white/20 md:text-gray-700 md:hover:text-gray-900 hover:text-white text-lg">
             {ele.name}
           </Button>
         </Link>
@@ -76,10 +76,10 @@ export function Header() {
   )
 
   return (
+    // NICE COLOR:
+    // "bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100"
     <header
-      className={`fixed top-0 left-0 right-0 z-50 p-2 transition-colors duration-300 ease-in-out
-  ${isTransparent ? "bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100" : "bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100"} 
-  flex justify-between items-center`}
+      className={`fixed top-0 left-0 right-0 z-50 p-2 transition-colors duration-300 ease-in-out bg-primary flex justify-between items-center`}
     >
       <Link href="/" passHref className="flex items-center ml-4 bg-transparent hover:bg-white/10 rounded-xl px-2">
         <Image src="/aasia logo_transparent.png" alt="Club Logo" width={40} height={40} className="mr-6 w-[10vh]" />
@@ -91,8 +91,8 @@ export function Header() {
 
       {/* Mobile Menu Button */}
       <div className="md:hidden">
-        <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white">
-          <MenuIcon className="h-6 w-6" />
+        <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-black hover:bg-white/20">
+          <MenuIcon className="h-20 w-20" />
           <span className="sr-only">Toggle navigation menu</span>
         </Button>
       </div>

@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import { Reddit_Sans } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "next-themes"
+import { Footer } from "@/components/footer"
+import { Header } from "@/components/header"
 
 const redditSans = Reddit_Sans({ subsets: ["latin"] })
 
@@ -21,7 +23,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={redditSans.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
+          <Header />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

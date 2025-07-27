@@ -129,61 +129,56 @@ const carouselImages = [
 
 export default function EboardPage() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-1 pt-20">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-16 px-4">
-          <div className="container mx-auto max-w-6xl text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">Meet Our Executive Board</h1>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
-              Dedicated leaders working to strengthen our community and advance Asian American awareness at UIC
-            </p>
+    <div className="flex-1 pt-20 flex-col min-h-screen">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-16 px-4">
+        <div className="container mx-auto max-w-6xl text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">Meet Our Executive Board</h1>
+          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
+            Dedicated leaders working to strengthen our community and advance Asian American awareness at UIC
+          </p>
+        </div>
+      </section>
+
+      {/* Eboard Members Section */}
+      <section className="bg-white py-16 px-4">
+        <div className="container mx-auto max-w-7xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Our Leadership Team</h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {eboardMembers.map((member) => (
+              <EboardMemberCard key={member.id} member={member} />
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Eboard Members Section */}
-        <section className="bg-white py-16 px-4">
-          <div className="container mx-auto max-w-7xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Our Leadership Team</h2>
+      {/* Enhanced Carousel Section */}
+      <section className="bg-gray-50 py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+            Executive Board in Action
+          </h2>
+          <EnhancedImageCarousel images={carouselImages} />
+        </div>
+      </section>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {eboardMembers.map((member) => (
-                <EboardMemberCard key={member.id} member={member} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Enhanced Carousel Section */}
-        <section className="bg-gray-50 py-16 px-4">
-          <div className="container mx-auto max-w-6xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-              Executive Board in Action
-            </h2>
-            <EnhancedImageCarousel images={carouselImages} />
-          </div>
-        </section>
-
-        {/* Intern Application Section */}
-        <section className="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 py-16 px-4">
-          <div className="container mx-auto max-w-4xl text-center">
-            <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-4">WANT TO JOIN OUR TEAM?</p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
-              Apply to Join AASIA's Executive Board
-            </h2>
-            <Button
-              asChild
-              size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-medium"
-            >
-              <Link href="/intern-applications">Intern Applications</Link>
-            </Button>
-          </div>
-        </section>
-      </main>
-
-      <Footer />
+      {/* Intern Application Section */}
+      <section className="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 py-16 px-4">
+        <div className="container mx-auto max-w-4xl text-center">
+          <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-4">WANT TO JOIN OUR TEAM?</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
+            Apply to Join AASIA's Executive Board
+          </h2>
+          <Button
+            asChild
+            size="lg"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-medium"
+          >
+            <Link href="/intern-applications">Intern Applications</Link>
+          </Button>
+        </div>
+      </section>
     </div>
   )
 }
