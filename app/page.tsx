@@ -3,6 +3,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ContentSection } from "@/components/content-section"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export default function HomePage() {
   return (
@@ -66,7 +67,53 @@ export default function HomePage() {
           backgroundColor="bg-white"
         />
 
-        {/* Additional sections can be easily added using the ContentSection component */}
+        {/* E-Board Section with Background Photo */}
+        <section
+          className="relative py-20 px-4 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/eboard-background.png')`,
+          }}
+        >
+          <div className="container mx-auto max-w-4xl text-center text-white">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Meet Our Leadership</h2>
+            <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto leading-relaxed">
+              Our dedicated executive board works tirelessly to create meaningful experiences, foster community
+              connections, and advance Asian American awareness on campus. Get to know the passionate leaders driving
+              our mission forward.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                asChild
+                size="lg"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-medium"
+              >
+                <Link href="/e-board">Meet Our E-Board</Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-medium bg-transparent"
+              >
+                <Link href="/intern-applications">Join Our Team</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* EVO Section */}
+        <ContentSection
+          title="EVO: Evolution"
+          description="Experience our signature cultural showcase that celebrates Asian American identity, heritage, and artistic expression. EVO brings together diverse voices through powerful performances, storytelling, and creative collaboration, creating a platform for meaningful dialogue about the Asian American experience."
+          buttonText="Explore EVO"
+          buttonHref="/evo"
+          imageSrc="/placeholder.svg?height=500&width=600&text=EVO+Showcase"
+          imageAlt="EVO Cultural Showcase"
+          imageOnRight={false}
+          backgroundColor="bg-gray-50"
+        />
+
+        {/* Join Our Community Section */}
         <ContentSection
           title="Join Our Community"
           description="Connect with fellow Asian American students, participate in cultural events, and make lasting friendships. Our community welcomes students from all backgrounds who are interested in learning about and supporting Asian American culture and issues."
@@ -74,8 +121,8 @@ export default function HomePage() {
           buttonHref="#membership"
           imageSrc="/placeholder.svg?height=400&width=400&text=Community+Image"
           imageAlt="Community gathering"
-          imageOnRight={false}
-          backgroundColor="bg-gray-50"
+          imageOnRight={true}
+          backgroundColor="bg-white"
         />
       </main>
 
