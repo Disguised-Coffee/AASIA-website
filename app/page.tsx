@@ -1,4 +1,5 @@
 "use client"
+import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ContentSection } from "@/components/content-section"
 import { Button } from "@/components/ui/button"
@@ -6,6 +7,7 @@ import { Button } from "@/components/ui/button"
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
+      <Header />
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-20 px-4 min-h-[80vh] flex items-center">

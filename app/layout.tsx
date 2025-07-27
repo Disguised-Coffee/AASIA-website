@@ -3,14 +3,13 @@ import type { Metadata } from "next"
 import { Reddit_Sans } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "next-themes"
-import { Header } from "@/components/header"
 
 const redditSans = Reddit_Sans({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "AASIA at UIC",
   description: "AASIA - Asian American Student Association at UIC",
-  generator: 'v0.dev',
+  generator: "v0.dev",
 }
 
 export default function RootLayout({
@@ -22,7 +21,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={redditSans.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Header />
           {children}
         </ThemeProvider>
       </body>
