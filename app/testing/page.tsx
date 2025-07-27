@@ -28,8 +28,6 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* <Header /> */}
-
       <main className="flex-1">
         {/* Hero Section */}
         <section
@@ -44,7 +42,7 @@ export default function HomePage() {
               for exciting events and memorable experiences!
             </p>
             <Link href="/#about-us-section" passHref>
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Button size="lg">
                 Learn More
               </Button>
             </Link>
