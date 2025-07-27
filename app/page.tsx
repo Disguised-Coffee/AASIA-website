@@ -1,113 +1,187 @@
 "use client"
 
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { Slideshow } from "@/components/slideshow"
-import Image from "next/image"
-import Link from "next/link"
+import { ContentSection } from "@/components/content-section"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import Image from "next/image"
 
 export default function HomePage() {
-  const slideshowImages = [
-    {
-      src: "/placeholder.svg?height=400&width=800&text=Club+Event+1",
-      alt: "Club Event 1",
-      caption: "Our first successful club gathering!",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=800&text=Club+Event+2",
-      alt: "Club Event 2",
-      caption: "Members collaborating on a new project.",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=800&text=Club+Event+3",
-      alt: "Club Event 3",
-      caption: "Fun times at our annual social event.",
-    },
-  ]
-
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* <Header /> */}
+    <div className="flex-1 flex-col min-h-screen">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-20 px-4 min-h-[80vh] flex items-center">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                  Asian American Students In Alliance
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-600 font-medium">Pan-Asian Student Organization at UIC</p>
+              </div>
 
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section
-          id="hero-section"
-          className="relative flex flex-col items-center justify-center text-center text-white py-20 min-h-[80vh] px-4"
-        >
-          <div className="absolute inset-0 bg-black/40 z-0"></div> {/* Semi-transparent overlay */}
-          <div className="relative z-10 max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg">Welcome to Our Vibrant Club!</h1>
-            <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto">
-              Connecting students through shared passions, fostering growth, and building a strong community. Join us
-              for exciting events and memorable experiences!
-            </p>
-            <Link href="/#about-us-section" passHref>
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-                Learn More
-              </Button>
-            </Link>
-          </div>
-        </section>
-
-        {/* Highlights Section (with Slideshow) */}
-        <section id="highlights-section" className="bg-white dark:bg-gray-800 py-16 px-4">
-          <div className="container mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-800 dark:text-white">
-              Club Highlights
-            </h2>
-            <Slideshow images={slideshowImages} />
-          </div>
-        </section>
-
-        {/* Info Section */}
-        <section id="info-section" className="bg-gray-100 dark:bg-gray-900 py-16 px-4">
-          <div className="container mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            <div className="md:w-1/2 flex justify-center">
-              <Image
-                src="/placeholder.svg?height=400&width=600&text=Club+Activity"
-                alt="Club Activity"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-lg object-cover w-full max-w-md"
-              />
-            </div>
-            <div className="md:w-1/2 text-center md:text-left">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white">
-                Discover Our Community
-              </h2>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                Our club is dedicated to creating an inclusive and engaging environment for all members. We host a
-                variety of events, workshops, and social gatherings designed to help you connect, learn, and grow.
-                Whether you're looking to develop new skills, meet like-minded individuals, or simply have fun, you'll
-                find your place here.
-              </p>
-              <Link href="/#about-us-section" passHref>
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-                  Read More About Us
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-medium"
+                >
+                  <a href="#membership">Membership Form</a>
                 </Button>
-              </Link>
+                {/* <Button
+                    asChild
+                    variant="outline"
+                    size="lg"
+                    className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-medium bg-transparent"
+                  >
+                    <a href="#forms">Other Important Form</a>
+                  </Button> */}
+              </div>
+            </div>
+
+            {/* Right Content - Placeholder for Graphics */}
+            <div className="flex items-center justify-center">
+              <div className="w-full max-w-md aspect-[4/3] border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                <div className="text-center p-8">
+                  <div className="text-gray-500 text-lg font-medium mb-2">Place Holder for</div>
+                  <div className="text-gray-700 text-xl font-semibold">Insta Graphics</div>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Placeholder sections for navigation links */}
-        <section
-          id="about-us-section"
-          className="min-h-[50vh] bg-white dark:bg-gray-800 py-16 px-4 flex items-center justify-center"
-        >
-          <h2 className="text-4xl font-bold text-gray-800 dark:text-white">About Us Content</h2>
-        </section>
-        <section
-          id="eboard-info-section"
-          className="min-h-[50vh] bg-gray-200 dark:bg-gray-700 py-16 px-4 flex items-center justify-center"
-        >
-          <h2 className="text-4xl font-bold text-gray-800 dark:text-white">Eboard Info Content</h2>
-        </section>
-      </main>
+      {/* About Section */}
+      <ContentSection
+        label="AASIA"
+        title="About Us"
+        description="Asian American Students in Alliance (AASIA) is the oldest Asian American organization at UIC, founded as a Pan-Asian organization in 1987. We aim to increase Asian American awareness and address issues surrounding the Asian American community through our cultural workshops, events, performances, services, and social gatherings. AASIA provides a place where you can learn more about Asian American identity and awareness."
+        buttonText="FAQ"
+        buttonHref="/faq"
+        imageSrc="/aasia logo_transparent.png"
+        imageAlt="AASIA Logo"
+        backgroundColor="bg-white"
+      />
 
-      <Footer />
+      {/* E-Board Section */}
+      <section className="relative bg-gray-50 py-16 px-4 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/placeholder.svg?height=600&width=1200&text=E-Board+Background+Photo"
+            alt="E-Board background"
+            fill
+            style={{ objectFit: "cover" }}
+            className="opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-50/90 to-gray-50/70"></div>
+        </div>
+
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Content */}
+            <div className="space-y-6">
+              <div>
+                <div className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">Leadership</div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
+                  Meet Our Executive Board
+                </h2>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Learn more about the members planning and
+                  organizing AASIA’s events!
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3">
+                  <Link href="/e-board">Meet the Team</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 bg-transparent"
+                >
+                  <Link href="/intern-applications">Join Our Team</Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Image/Visual Element */}
+            <div className="flex items-center justify-center">
+              <div className="relative w-full max-w-md aspect-square">
+                <Image
+                  src="/placeholder.svg?height=400&width=400&text=E-Board+Team+Photo"
+                  alt="Executive Board Team"
+                  fill
+                  style={{ objectFit: "cover" }}
+                  className="rounded-lg shadow-xl"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* EVO Section */}
+      <section className="bg-white py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Image */}
+            <div className="flex items-center justify-center lg:order-1">
+              <div className="relative w-full max-w-md aspect-video">
+                <Image
+                  src="/placeholder.svg?height=300&width=500&text=EVO+Showcase+Preview"
+                  alt="EVO Cultural Showcase"
+                  fill
+                  style={{ objectFit: "cover" }}
+                  className="rounded-lg shadow-xl"
+                />
+                {/* Play button overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-white/90 rounded-full p-4 shadow-lg">
+                    <div className="w-0 h-0 border-l-[20px] border-l-blue-600 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="space-y-6 lg:order-2">
+              <div>
+                <div className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">
+                  Cultural Showcase
+                </div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
+                  EVO: Evolution
+                </h2>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Are you interested in dancing? Do you want to learn about new dance styles from all over Asia? Are you a beginner or advanced performer? Feel free to join Evolution (or EVO)! We are a no-audition dance group dedicated to spreading Asian culture all over UIC!
+                </p>
+              </div>
+
+              <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3">
+                <Link href="/evo">Discover EVO</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Join Our Community Section */}
+      {/* <ContentSection
+          title="Join Our Community"
+          description="Connect with fellow Asian American students, participate in cultural events, and make lasting friendships. Our community welcomes students from all backgrounds who are interested in learning about and supporting Asian American culture and issues."
+          buttonText="Get Involved"
+          buttonHref="#membership"
+          imageSrc="/placeholder.svg?height=400&width=400&text=Community+Image"
+          imageAlt="Community gathering"
+          imageOnRight={false}
+          backgroundColor="bg-gray-50"
+        /> */}
+      {/* [] ADD GALLERY SECTION */}
     </div>
   )
 }
