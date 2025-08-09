@@ -82,8 +82,8 @@ export function Header() {
       className={`fixed top-0 left-0 right-0 z-50 p-2 transition-colors duration-300 ease-in-out bg-primary flex justify-between items-center`}
     >
       <Link href="/" passHref className="flex items-center ml-4 bg-transparent hover:bg-white/10 rounded-xl px-2">
-        <Image src="/aasia logo_transparent.png" alt="Club Logo" width={40} height={40} className="mr-6 w-[10vh]" />
-        <Image src="/aasia logo_just-lettering.png" alt="Club Logo" width={40} height={40} className="mr-2 w-[16vh]" />
+        <Image src="/aasia logo_transparent.png" alt="Club Logo" width={40} height={40} className="mr-6 w-[10vh] select-none pointer-events-none" />
+        <Image src="/aasia logo_just-lettering.png" alt="Club Logo" width={40} height={40} className="mr-2 w-[16vh] select-none pointer-events-none" />
       </Link>
 
       {/* Desktop Navigation */}
