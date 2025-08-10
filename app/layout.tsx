@@ -11,7 +11,11 @@ const redditSans = Reddit_Sans({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "AASIA at UIC",
   description: "AASIA - Asian American Student Association at UIC",
-  generator: "v0.dev",
+  
+  generator: "v0.dev/pain",
+  icons: {
+    icon: "/favicon.ico",
+  },
 }
 
 export default function RootLayout({

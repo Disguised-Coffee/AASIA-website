@@ -5,31 +5,56 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
 
+import { useState, useEffect } from "react";
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return isMobile;
+}
+
 export default function HomePage() {
+  const isMobile = useIsMobile();
   return (
     <div className="flex-1 flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-20 px-4 min-h-[80vh] flex items-center">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  Asian American Students In Alliance
-                </h1>
-                <p className="text-xl md:text-2xl text-gray-600 font-medium">Pan-Asian Student Organization at UIC</p>
-              </div>
+      {/* bg-gradient-to-t from-bg-AASIA from-10% to-white-400 to-99% */}
+      <section className="relative py-20 px-4 min-h-[80vh] flex items-center pt-40 sm:pt-32 justify-center">
+        <div className="absolute inset-0 z-0 opacity-25">
+          <Image
+            src="/aasia_banner_logo_official.png"
+            alt="AASIA Banner"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0  bg-gradient-to-b from-white/40 to-foreground/90 "></div>
+        </div>
+        <div className="relative py-20 px-4 pt-40 sm:pt-32 inset-0 z-10">
+          <div className="container mx-auto max-w-6xl z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Left Content */}
+              <div className="space-y-8">
+                <div className="space-y-6">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                    Asian American Students In Alliance
+                  </h1>
+                  <p className="text-xl md:text-2xl text-gray-900 font-medium">Pan-Asian Student Organization at UIC</p>
+                </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-medium"
-                >
-                  <a href="#membership">Membership Form</a>
-                </Button>
-                {/* <Button
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-medium"
+                  >
+                    <a href="#membership">Membership Form</a>
+                  </Button>
+                  {/* <Button
                     asChild
                     variant="outline"
                     size="lg"
@@ -37,15 +62,16 @@ export default function HomePage() {
                   >
                     <a href="#forms">Other Important Form</a>
                   </Button> */}
+                </div>
               </div>
-            </div>
 
-            {/* Right Content - Placeholder for Graphics */}
-            <div className="flex items-center justify-center">
-              <div className="w-full max-w-md aspect-[4/3] border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-white/50 backdrop-blur-sm">
-                <div className="text-center p-8">
-                  <div className="text-gray-500 text-lg font-medium mb-2">Place Holder for</div>
-                  <div className="text-gray-700 text-xl font-semibold">Insta Graphics</div>
+              {/* Right Content - Placeholder for Graphics */}
+              <div className="flex items-center justify-center">
+                <div className="w-full max-w-md aspect-[4/3] border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                  <div className="text-center p-8">
+                    <div className="text-gray-500 text-lg font-medium mb-2">Place Holder for</div>
+                    <div className="text-gray-700 text-xl font-semibold">Insta Graphics</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -60,33 +86,33 @@ export default function HomePage() {
         description="Asian American Students in Alliance (AASIA) is the oldest Asian American organization at UIC, founded as a Pan-Asian organization in 1987. We aim to increase Asian American awareness and address issues surrounding the Asian American community through our cultural workshops, events, performances, services, and social gatherings. AASIA provides a place where you can learn more about Asian American identity and awareness."
         buttonText="FAQ"
         buttonHref="/faq"
-        imageSrc="/aasia logo_transparent.png"
+        imageSrc={!isMobile ? "/aasia_circle_logo.png" : "/aasia_banner_logo_official.png"}
         imageAlt="AASIA Logo"
         backgroundColor="bg-white"
       />
 
       {/* E-Board Section */}
-      <section className="relative bg-gray-50 py-16 px-4 overflow-hidden">
+      <section className="relative bg-gray-50 py-16 px-4 overflow-hidden min-h-[80vh]">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/placeholder.svg?height=600&width=1200&text=E-Board+Background+Photo"
+            src="aasia_banner_logo_official.png"
             alt="E-Board background"
             fill
             style={{ objectFit: "cover" }}
-            className="opacity-20"
+            className="opacity-25 grayscale"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-50/90 to-gray-50/70"></div>
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-gray-50/90 to-gray-50/70"></div> */}
         </div>
 
-        <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="mx-auto max-w-6xl z-10 absolute inset-x-0 bottom-0 ">
+          <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
             {/* Content */}
             <div className="space-y-6">
-              <div>
-                <div className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">Leadership</div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
-                  Meet Our Executive Board
+              <div className="p-6">
+                {/* <div className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">Leadership</div> */}
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+                  Meet the Executive Board
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed">
                   Learn more about the members planning and
@@ -94,23 +120,24 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3">
-                  <Link href="/e-board">Meet the Team</Link>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 bg-transparent"
-                >
-                  <Link href="/intern-applications">Join Our Team</Link>
-                </Button>
-              </div>
+
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 p-6 justify-center">
+              <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3">
+                <Link href="/e-board">Meet the Team</Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 bg-transparent"
+              >
+                <Link href="/intern-applications">Join Our Team</Link>
+              </Button>
             </div>
 
             {/* Image/Visual Element */}
-            <div className="flex items-center justify-center">
+            {/* <div className="flex items-center justify-center">
               <div className="relative w-full max-w-md aspect-square">
                 <Image
                   src="/placeholder.svg?height=400&width=400&text=E-Board+Team+Photo"
@@ -120,40 +147,37 @@ export default function HomePage() {
                   className="rounded-lg shadow-xl"
                 />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
 
       {/* EVO Section */}
-      <section className="bg-white py-16 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="relative bg-gray-50 py-16 px-4 overflow-hidden min-h-[80vh]">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-10">
+          <Image
+            src="aasia_banner_logo_official.png"
+            alt="E-Board background"
+            fill
+            style={{ objectFit: "cover" }}
+            className="opacity-25 grayscale"
+          />
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-gray-50/90 to-gray-50/70"></div> */}
+        </div>
+        <div className="absolute mx-auto max-w-6xl z-40 inset-x-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-20">
             {/* Image */}
             <div className="flex items-center justify-center lg:order-1">
-              <div className="relative w-full max-w-md aspect-video">
-                <Image
-                  src="/placeholder.svg?height=300&width=500&text=EVO+Showcase+Preview"
-                  alt="EVO Cultural Showcase"
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="rounded-lg shadow-xl"
-                />
-                {/* Play button overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-white/90 rounded-full p-4 shadow-lg">
-                    <div className="w-0 h-0 border-l-[20px] border-l-blue-600 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
-                  </div>
-                </div>
-              </div>
+
             </div>
 
             {/* Content */}
             <div className="space-y-6 lg:order-2">
               <div>
-                <div className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">
+                {/* <div className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">
                   Cultural Showcase
-                </div>
+                </div> */}
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
                   EVO: Evolution
                 </h2>
@@ -161,10 +185,12 @@ export default function HomePage() {
                   Are you interested in dancing? Do you want to learn about new dance styles from all over Asia? Are you a beginner or advanced performer? Feel free to join Evolution (or EVO)! We are a no-audition dance group dedicated to spreading Asian culture all over UIC!
                 </p>
               </div>
+              <div className="justify-center flex">
+                <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3">
+                  <Link href="/evo">Discover EVO</Link>
+                </Button>
+              </div>
 
-              <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3">
-                <Link href="/evo">Discover EVO</Link>
-              </Button>
             </div>
           </div>
         </div>

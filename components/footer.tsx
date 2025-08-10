@@ -1,9 +1,8 @@
+'use client'
+
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-
-import { Facebook, Instagram, Twitter, Youtube, Linkedin } from "lucide-react"
-
 
 export function Footer() {
 
@@ -49,7 +48,7 @@ export function Footer() {
       </div>
 
       {/* Transparent Gradient Logo */}
-      <div className="absolute bottom-4 right-4">
+      <div className="absolute bottom-4 right-4 select-none pointer-events-none" onContextMenu={(e) => e.preventDefault()}>
         <Image
           src="/aasia logo_white outline.png"
           alt="Club Logo Gradient"

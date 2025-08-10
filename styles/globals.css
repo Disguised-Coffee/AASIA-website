@@ -15,7 +15,7 @@ body {
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --foreground: #A9D8FF;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
@@ -47,6 +47,7 @@ body {
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --bg-AASIA: 207 100 83 25%;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -90,5 +91,15 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+
+@media (min-width: 1536px) {
+  .testImage {
+    display: none;
+  }
+  .otherImage {
+    display: unset;
   }
 }

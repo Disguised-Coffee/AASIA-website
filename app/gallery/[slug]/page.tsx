@@ -38,35 +38,35 @@ export default function GalleryDetailPage({ params }: GalleryDetailPageProps) {
       {
         src: "/placeholder.svg?height=600&width=800&text=Gala+Image+1",
         alt: "Opening ceremony",
-        caption: "Opening ceremony with traditional lion dance",
+        caption: "...",
       },
       {
         src: "/placeholder.svg?height=600&width=800&text=Gala+Image+2",
         alt: "Community dinner",
-        caption: "Community members enjoying dinner together",
+        caption: "Nothing is here",
       },
       {
-        src: "/placeholder.svg?height=600&width=800&text=Gala+Image+3",
+        src: "/aasia logo_transparent.png",
         alt: "Awards ceremony",
-        caption: "Recognizing outstanding community leaders",
+        caption: "OH MY- ITS BAOBAO!!!!",
       },
       {
         src: "/placeholder.svg?height=600&width=800&text=Gala+Image+4",
         alt: "Cultural performance",
-        caption: "Traditional Korean fan dance performance",
+        caption: "...",
       },
       {
         src: "/placeholder.svg?height=600&width=800&text=Gala+Image+5",
         alt: "Networking",
-        caption: "Alumni and current students networking",
+        caption: "something is coming...",
       },
     ],
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen pt-25">
       {/* Gallery Header */}
-      <section className="bg-white py-12 px-4 border-b border-gray-200">
+      <section className="bg-white py-12 px-4 border-b border-gray-200 pt-40">
         <div className="container mx-auto max-w-4xl">
           <Link
             href="/gallery"
@@ -105,7 +105,7 @@ export default function GalleryDetailPage({ params }: GalleryDetailPageProps) {
       <section className="bg-white py-12 px-4">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+            {/* <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
               Download All Photos
             </Button>
             <Button
@@ -114,7 +114,7 @@ export default function GalleryDetailPage({ params }: GalleryDetailPageProps) {
               className="border-blue-600 text-blue-600 hover:bg-blue-50 bg-transparent"
             >
               Share Gallery
-            </Button>
+            </Button> */}
           </div>
         </div>
       </section>
