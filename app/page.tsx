@@ -208,7 +208,7 @@ export default function HomePage() {
           {/* <div className="absolute inset-0 bg-gradient-to-r from-gray-50/90 to-gray-50/70"></div> */}
         </div>
         <div className="absolute mx-auto max-w-6xl z-40 inset-x-0 bottom-10 lg:top-0">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-20 px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-20 px-6 lg:p-16">
             {/* Image */}
             <div className="flex items-center justify-center lg:order-1">
 
