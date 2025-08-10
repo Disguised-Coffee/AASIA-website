@@ -1,7 +1,5 @@
 "use client"
 
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import { EventGalleryPreview } from "@/components/event-gallery-preview"
 import { GalleryNavigation } from "@/components/gallery-navigation"
 import Image from "next/image"
@@ -32,7 +30,7 @@ const eventGalleries = [
         caption: "Recognizing outstanding community members",
       },
       {
-        src: "/placeholder.svg?height=400&width=600&text=Gala+Performance",
+        src: "/aasia logo_transparent.png",
         alt: "Cultural performance",
         caption: "Traditional dance performances",
       },

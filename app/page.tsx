@@ -6,6 +6,48 @@ import Link from "next/link"
 import Image from "next/image"
 
 import { useState, useEffect } from "react";
+import { EnhancedImageCarousel } from "@/components/enhanced-image-carousel"
+import { ArrowRight, Images } from "lucide-react"
+
+// [] TODO, QUERY IMAGES here.
+const carouselImages = [
+  {
+    src: "/aasia logo_transparent.png",
+    alt: "Executive board meeting",
+    caption: "this is baobao.",
+  },
+  {
+    src: "/placeholder.svg?height=400&width=600&text=Eboard+Meeting+2",
+    alt: "Team building activity",
+    caption: "Executive board team building retreat",
+  },
+  {
+    src: "/placeholder.svg?height=400&width=600&text=Eboard+Meeting+3",
+    alt: "Event planning",
+    caption: "Planning our signature events",
+  },
+  {
+    src: "/placeholder.svg?height=400&width=600&text=Eboard+Meeting+4",
+    alt: "Community outreach",
+    caption: "Organizing community service projects",
+  },
+  {
+    src: "/placeholder.svg?height=400&width=600&text=Eboard+Meeting+5",
+    alt: "Leadership workshop",
+    caption: "Leadership development workshop",
+  },
+  {
+    src: "/placeholder.svg?height=400&width=600&text=Eboard+Meeting+6",
+    alt: "Annual gala planning",
+    caption: "Preparing for our annual gala",
+  },
+  {
+    src: "/placeholder.svg?height=400&width=600&text=Eboard+Meeting+7",
+    alt: "New member orientation",
+    caption: "Welcoming new executive members",
+  },
+]
+
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -166,14 +208,14 @@ export default function HomePage() {
           {/* <div className="absolute inset-0 bg-gradient-to-r from-gray-50/90 to-gray-50/70"></div> */}
         </div>
         <div className="absolute mx-auto max-w-6xl z-40 inset-x-0">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-20 px-6">
             {/* Image */}
             <div className="flex items-center justify-center lg:order-1">
 
             </div>
 
             {/* Content */}
-            <div className="space-y-6 lg:order-2">
+            <div className="space-y-6 lg:order-2 px-2">
               <div>
                 {/* <div className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">
                   Cultural Showcase
@@ -195,6 +237,28 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <section className="bg-gray-50 py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+            Executive Board in Action
+          </h2>
+          <EnhancedImageCarousel images={carouselImages} />
+        </div>
+        <div className="text-center py-6">
+          {/* <div className="flex items-center justify-center gap-2 text-gray-600 mb-6">
+            <Images className="h-5 w-5" />
+            <span className="text-sm">Showing 6 of {images.length}+ photos</span>
+          </div> */}
+
+          <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Link href={"/gallery"} className="inline-flex items-center gap-2">
+              View Gallery
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+      </section>
+
 
       {/* Join Our Community Section */}
       {/* <ContentSection
