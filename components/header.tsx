@@ -6,10 +6,42 @@ import { Button } from "@/components/ui/button"
 import { MenuIcon } from "lucide-react"
 import { useState, useEffect } from "react"
 import SimpleDropdown from "./ui/dropdown"
+import { useRef } from "react"
 
 export function Header() {
   const [isTransparent, setIsTransparent] = useState(true)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  
+  const contentRef = useRef<HTMLDivElement>(null)
+  
+    useEffect(() => {
+      function handleClickOutside(event: MouseEvent) {
+        if (
+          contentRef.current &&
+          !contentRef.current.contains(event.target as Node)
+        ) {
+          if (typeof document !== "undefined") {
+            document.dispatchEvent(new CustomEvent("dropdown-close"))
+
+            
+            setIsMenuOpen(false)
+
+            // check if click was in menu,
+            // if (contentRef.current && !contentRef.current.contains(event.target as Node)) {
+
+            console.log("value of isMenuOpen:", isMenuOpen)
+          }
+        }
+      }
+      if (isMenuOpen) {
+        document.addEventListener("mousedown", handleClickOutside)
+      }
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside)
+      }
+    }, [isMenuOpen, contentRef])
+
+
 
   // FEATURE [] header effect
   useEffect(() => {
@@ -42,7 +74,7 @@ export function Header() {
   const navLinks = (
     <>
       {navBarBtns.map((ele, index) => (
-        <Link href={ele.link} passHref key={index}>
+        <Link href={ele.link} passHref key={index} onClick={() => setIsMenuOpen(false)}>
           <Button variant="ghost" className="hover:bg-white/20 md:text-gray-700 md:hover:text-gray-900 hover:text-white text-lg">
             {ele.name}
           </Button>
@@ -52,6 +84,7 @@ export function Header() {
         {galleryLinks.map((ele, index) => (
           <Link href={ele.link} passHref key={index}>
             <Button
+              onClick={() => setIsMenuOpen(false)}
               variant="ghost"
               className="w-full justify-start relative flex select-none items-center rounded-sm px-2 py-1.5 text-sm transition-colors hover:bg-gray-100"
             >
@@ -79,6 +112,7 @@ export function Header() {
     // NICE COLOR:
     // "bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100"
     <header
+      ref={contentRef}  
       className={`fixed top-0 left-0 right-0 z-50 p-2 transition-colors duration-300 ease-in-out bg-primary flex justify-between items-center`}
     >
       <Link href="/" passHref className="flex items-center ml-4 bg-transparent hover:bg-white/10 rounded-xl px-2">
@@ -91,7 +125,7 @@ export function Header() {
 
       {/* Mobile Menu Button */}
       <div className="md:hidden">
-        <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-black hover:bg-white/20">
+        <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(true)} className="text-black hover:bg-white/20">
           <MenuIcon className="h-20 w-20" />
           <span className="sr-only">Toggle navigation menu</span>
         </Button>
@@ -99,7 +133,7 @@ export function Header() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <nav className="md:hidden text-white absolute top-full left-0 right-0 bg-black/90 flex flex-col items-end p-4 space-y-2">
+        <nav  className="md:hidden text-white absolute top-full left-0 right-0 bg-black/90 flex flex-col items-end p-4 space-y-2">
           {navLinks}
         </nav>
       )}

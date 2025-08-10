@@ -76,7 +76,7 @@ export default function HomePage() {
           />
           <div className="absolute inset-0  bg-gradient-to-b from-white/40 to-foreground/90 "></div>
         </div>
-        <div className="relative py-20 px-4 pt-40 sm:pt-32 inset-0 z-10">
+        <div className="relative px-4  inset-0 z-10">
           <div className="container mx-auto max-w-6xl z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Left Content */}
@@ -207,7 +207,7 @@ export default function HomePage() {
           />
           {/* <div className="absolute inset-0 bg-gradient-to-r from-gray-50/90 to-gray-50/70"></div> */}
         </div>
-        <div className="absolute mx-auto max-w-6xl z-40 inset-x-0">
+        <div className="absolute mx-auto max-w-6xl z-40 inset-x-0 bottom-10 lg:top-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-20 px-6">
             {/* Image */}
             <div className="flex items-center justify-center lg:order-1">

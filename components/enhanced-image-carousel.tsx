@@ -133,13 +133,13 @@ export function EnhancedImageCarousel({ images, autoPlayInterval = 4000 }: Enhan
                   alt={image.alt}
                   fill
                   style={{ objectFit: "cover" }}
-                  className="transition-opacity duration-300"
+                  className="transition-opacity duration-300 select-none pointer-events-none"
                 />
               </button>
             ))}
 
           {/* Main Image */}
-          <div className="relative w-full max-w-2xl aspect-video rounded-lg overflow-hidden shadow-xl mx-4"
+          <div className="relative w-full max-w-2xl aspect-video rounded-lg overflow-hidden shadow-xl mx-4 "
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -149,7 +149,7 @@ export function EnhancedImageCarousel({ images, autoPlayInterval = 4000 }: Enhan
               alt={currentImage.alt}
               fill
               style={{ objectFit: "cover" }}
-              className="transition-opacity duration-500"
+              className="transition-opacity duration-500 select-none pointer-events-none"
               priority
             />
 
@@ -210,7 +210,7 @@ export function EnhancedImageCarousel({ images, autoPlayInterval = 4000 }: Enhan
                   alt={image.alt}
                   fill
                   style={{ objectFit: "cover" }}
-                  className="transition-opacity duration-300"
+                  className="transition-opacity duration-300 select-none pointer-events-none"
                 />
               </button>
             ))}
