@@ -110,10 +110,13 @@ export const Video = ({
       />
       {/* Play Button Overlay */}
       {/* disappears when video is playing */}
-      <div className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-300 ${isPlaying ? "opacity-0" : "opacity-100"}`} onClick={handlePlay}>
+      <div
+        className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-300 ${isPlaying ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        onClick={handlePlay}
+      >
         <button
           className="bg-white/90 hover:bg-white text-gray-900 rounded-full p-6 transition-all duration-300 hover:scale-110 shadow-lg"
-
           type="button"
         >
           <Play className="h-12 w-12 ml-1" fill="currentColor" />
@@ -121,14 +124,13 @@ export const Video = ({
       </div>
       {/* Video Info Overlay */}
       {/* disappears when video is playing */}
-      {!isPlaying && (
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 z-30">
-          <h3 className="text-white text-xl font-semibold mb-2">{title}</h3>
-          <p className="text-gray-200 text-sm">
-            {description}
-          </p>
-        </div>
-      )}
+      <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 z-30 transition-opacity duration-300 ${isPlaying ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`} onClick={handlePlay}>
+        <h3 className="text-white text-xl font-semibold mb-2">{title}</h3>
+        <p className="text-gray-200 text-sm">
+          {description}
+        </p>
+      </div>
     </div>
   )
 }
