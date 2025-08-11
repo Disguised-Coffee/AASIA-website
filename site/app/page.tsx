@@ -60,8 +60,26 @@ function useIsMobile() {
   return isMobile;
 }
 
-export default function HomePage() {
+import { PortableText, type SanityDocument } from "next-sanity";
+import imageUrlBuilder from "@sanity/image-url";
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { client } from "../sanity/client";
+// import Link from "next/link";
+
+
+const POSTS_QUERY = `*[
+  _type == "hero"
+  && defined(slug.current)
+]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt}`;
+
+const options = { next: { revalidate: 30 } };
+
+
+export default async function HomePage() {
   const isMobile = useIsMobile();
+
+  const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {});
+
   return (
     <div className="flex-1 flex-col min-h-screen">
       {/* Hero Section */}
@@ -119,6 +137,16 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+      </section>
+      <section>
+        {posts.map((post) => (
+          <li className="hover:underline" key={post._id}>
+            <Link href={`/${post.slug.current}`}>
+              <h2 className="text-xl font-semibold">{post.title}</h2>
+              <p>{new Date(post.publishedAt).toLocaleDateString()}</p>
+            </Link>
+          </li>
+        ))}
       </section>
 
       {/* About Section */}
