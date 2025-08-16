@@ -9,6 +9,16 @@ import { useState, useEffect } from "react";
 import { EnhancedImageCarousel } from "@/components/enhanced-image-carousel"
 import { ArrowRight, Images } from "lucide-react"
 
+
+// 
+// import type { Metadata } from 'next'
+ 
+// export const metadata: Metadata = {
+//   title: 'About',
+// }
+ 
+
+
 // [] TODO, QUERY IMAGES here.
 const carouselImages = [
   {

@@ -1,35 +1,16 @@
-import {defineField, defineType} from 'sanity'
+import { defineType, defineField } from 'sanity'
+import { BlockContentIcon } from "@sanity/icons";
 
-export const hero = defineType({
+
+export default defineType({
   name: 'hero',
-  title: 'Hero',
-  type: 'document',
+  type: 'object',
+  title: 'Hero Section',
   fields: [
-    defineField({
-      name: 'title',
-      type: 'string',
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'slug',
-      type: 'slug',
-      options: {source: 'title'},
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'publishedAt',
-      type: 'datetime',
-      initialValue: () => new Date().toISOString(),
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'image',
-      type: 'image',
-    }),
-    defineField({
-      name: 'body',
-      type: 'array',
-      of: [{type: 'block'}],
-    }),
+    defineField({ name: 'variation', type: 'string', title: 'Variation' }),
+    defineField({ name: 'title', type: 'string', title: 'Title' }),
+    defineField({ name: 'subtitle', type: 'string', title: 'Subtitle' }),
+    defineField({ name: 'backgroundImage', type: 'image', title: 'Background Image' }),
   ],
+  icon: BlockContentIcon,
 })

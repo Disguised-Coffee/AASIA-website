@@ -47,10 +47,8 @@ export default function Hero() {
                         {/* Right Content - Placeholder for Graphics */}
                         <div className="flex items-center justify-center">
                             <div className="w-full max-w-md aspect-[4/3] border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-white/50 backdrop-blur-sm">
-                                <div className="text-center p-8">
-                                    <div className="text-gray-500 text-lg font-medium mb-2">Place Holder for</div>
-                                    <div className="text-gray-700 text-xl font-semibold">Insta Graphics</div>
-                                </div>
+                                <iframe src="https://www.instagram.com/p/DJ13SqlxIi3/embed/"></iframe>
+                                <script async src="//www.instagram.com/embed.js"></script>
                             </div>
                         </div>
                     </div>

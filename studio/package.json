@@ -9,17 +9,18 @@
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy"
+    "deploy-graphql": "sanity graphql deploy",
+    "typegen": "sanity schema extract --path=./schema.json && sanity typegen generate"
   },
   "keywords": [
     "sanity"
   ],
   "dependencies": {
-    "@sanity/vision": "^4.3.0",
+    "@sanity/vision": "^4.4.1",
     "dotenv": "^17.2.1",
     "react": "^19.1",
     "react-dom": "^19.1",
-    "sanity": "^4.3.0",
+    "sanity": "^4.4.1",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {

@@ -1,0 +1,85 @@
+import { defineField, defineType, defineArrayMember } from 'sanity'
+import {TagIcon} from '@sanity/icons'
+
+export const Gallery = defineType({
+  name: 'gallery',
+  title: 'Gallery',
+  type: 'document',
+  fields: [
+    defineField({
+      name: 'title',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+      },
+    }),
+    defineField({
+      name: 'date',
+      type: 'date',
+      description: 'The date the event took place, usually.',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'location',
+      type: 'string',
+      description: 'The location of the event. [Optional]',
+      // validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'images',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'alt', type: 'string', title: 'Alt text',
+              validation: rule => rule.custom((value, context) => {
+                const parent = context?.parent as { asset?: { _ref?: string } }
+
+                return !value && parent?.asset?._ref ? 'Alt text is required when an image is present' : true
+              }),
+            },
+            {
+              name: 'caption', type: 'string', title: 'Caption',
+              validation: rule => rule.custom((value, context) => {
+                const parent = context?.parent as { asset?: { _ref?: string } }
+
+                return !value && parent?.asset?._ref ? 'Caption is required when an image is present' : true
+              }),
+            },
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'categories',
+      type: 'array',
+      of: [defineArrayMember({ type: 'reference', to: { type: 'category' } })],
+    }),
+  ],
+})
+
+
+export const categoryType = defineType({
+  name: 'category',
+  title: 'Category',
+  type: 'document',
+  icon: TagIcon,
+  fields: [
+    defineField({
+      name: 'title',
+      type: 'string',
+    }),
+    defineField({
+      name: 'description',
+      type: 'text',
+    }),
+  ],
+})
