@@ -7,6 +7,7 @@ export async function PageBuilder({ sections }: { sections: Promise<any[]> }) {
   return (
     <>
       {resolvedSections?.map((section, i) => {
+        // console.log(section)
         switch (section._type) {
           case 'hero':
             return <Hero key={i} {...section} />

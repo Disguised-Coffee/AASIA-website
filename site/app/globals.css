@@ -166,3 +166,11 @@ body {
     min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
   }
 }
+
+
+.disable-scrollbars {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  background: transparent; /* Chrome/Safari/Webkit */
+  /* width: 0px; */
+}

@@ -6,11 +6,29 @@ const query = `
   *[_type == "page" && slug.current == $slug][0]{
     title,
     sections[]{
-      _type,
-      // ...all fields for each block
+      ...
     }
   }
 `
+
+// const query2 = `
+//   *[_type == "page" && slug.current == $slug][0]{
+//     title,
+//     sections[]{
+//       _type,
+//       _key,
+//       title,
+//       description,
+//       backgroundImage,
+//       igPostID,
+//       buttons[]{
+//         _key,
+//         text,
+//         link
+//       }
+//     }
+//   }
+// `
 
 export default async function Page({
     params,
@@ -22,6 +40,8 @@ export default async function Page({
     if (!data) {
         return <div>Page not found</div>
     }
+
+    // console.log(data.sections)
     return (
         <div>
             <h1>{data.title}</h1>

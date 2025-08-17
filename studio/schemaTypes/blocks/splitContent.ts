@@ -18,19 +18,39 @@ export default defineType({
     }),
     defineField({
       name: "title",
-      type: "string",
+      type: "text",
     }),
     defineField({
       name: "caption",
-      type: "string",
+      type: "text",
     }),
     defineField({
       name: "image",
       type: "image",
-    }),
-    defineField({
-      name: "alt",
-      type: "string",
+      options: {
+        hotspot: true,
+      }, fields: [
+        defineField({
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          validation: rule => rule.custom((value, context) => {
+            const parent = context?.parent as { asset?: { _ref?: string } }
+
+            return !value && parent?.asset?._ref ? 'Alt text is required when an image is present' : true
+          }),
+        }),
+        defineField({
+          name: 'altImage',
+          type: "image",
+          title: "Alternative Image (for mobile version)",
+          validation: rule => rule.custom((value, context) => {
+            const parent = context?.parent as { asset?: { _ref?: string } }
+
+            return !value && parent?.asset?._ref ? 'Alt text is required when an image is present' : true
+          }),
+        }),
+      ]
     }),
     defineField({
       name: "text",
@@ -43,7 +63,7 @@ export default defineType({
       title: "title",
       media: "image",
     },
-    prepare({title, media}) {
+    prepare({ title, media }) {
       return {
         title: title,
         subtitle: "Split Image",
