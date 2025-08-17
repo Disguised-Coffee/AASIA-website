@@ -8,21 +8,17 @@ export default defineType({
   fields: [
     defineField({
       name: "orientation",
+      title: "Image on Right",
+      type: "boolean",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "label",
       type: "string",
-      options: {
-        list: [
-          { value: "imageLeft", title: "Image Left" },
-          { value: "imageRight", title: "Image Right" },
-        ],
-      },
     }),
     defineField({
       name: "title",
-      type: "text",
-    }),
-    defineField({
-      name: "caption",
-      type: "text",
+      type: "string",
     }),
     defineField({
       name: "image",
@@ -49,6 +45,12 @@ export default defineType({
 
             return !value && parent?.asset?._ref ? 'Alt text is required when an image is present' : true
           }),
+          fields: [
+            defineField({
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative text',
+            }),]
         }),
       ]
     }),

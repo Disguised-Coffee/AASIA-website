@@ -63,7 +63,7 @@ export default function Hero(props: any) {
                     <div className="absolute inset-0 z-0 opacity-25">
                         <Image
                             src={urlFor(props.backgroundImage).url() || "/default-hero-image.jpg"} // Fallback image
-                            alt="AASIA Banner"
+                            alt={props.backgroundImage?.alt || "Hero Background"}
                             fill
                             className="object-cover"
                         />

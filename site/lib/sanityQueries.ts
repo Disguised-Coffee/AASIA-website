@@ -5,6 +5,6 @@ export const PAGE_QUERY =
     title,
     sections[]{
       _type,
-      // ...all fields for each block
+      ...,
     }
   }`);
