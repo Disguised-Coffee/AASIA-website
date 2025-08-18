@@ -88,7 +88,7 @@ const options = { next: { revalidate: 30 } };
 export default async function HomePage() {
   const isMobile = useIsMobile();
 
-  const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {});
+  // const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {});
 
   return (
     <div className="flex-1 flex-col min-h-screen">
@@ -147,16 +147,6 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
-      </section>
-      <section>
-        {posts.map((post) => (
-          <li className="hover:underline" key={post._id}>
-            <Link href={`/${post.slug.current}`}>
-              <h2 className="text-xl font-semibold">{post.title}</h2>
-              <p>{new Date(post.publishedAt).toLocaleDateString()}</p>
-            </Link>
-          </li>
-        ))}
       </section>
 
       {/* About Section */}

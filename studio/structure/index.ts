@@ -9,6 +9,6 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem("page").title("Pages"),
       S.divider(),
       S.documentTypeListItem("category").title("Categories"),
-      
-      
+      S.divider(),
+      S.documentTypeListItem("siteSettings").title("Site Settings"),
     ])

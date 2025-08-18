@@ -4,5 +4,6 @@ import hero from "./blocks/hero";
 import splitImageType from "./blocks/splitContent";
 import { blockContentType } from "./blockContent";
 import button from "./button";
+import { siteSettingsType } from "./siteSettings";
 
-export const schemaTypes = [Gallery, categoryType, page, hero, splitImageType, blockContentType, button]
+export const schemaTypes = [Gallery, categoryType, page, hero, splitImageType, blockContentType, button, siteSettingsType]

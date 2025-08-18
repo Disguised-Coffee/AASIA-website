@@ -1,4 +1,4 @@
-import { defineField, defineType, defineArrayMember } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 import { BlockContentIcon } from "@sanity/icons";
 
 export default defineType({
@@ -8,22 +8,24 @@ export default defineType({
   fields: [
     defineField({
       name: "orientation",
-      title: "Image on Right",
-      type: "boolean",
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: "label",
+      title: "Text/UI orientation",
+      description: "Point of reference is from desktop view. See documentation for more details.",
       type: "string",
+      options: {
+        list: [
+          { title: "Bottom", value: "bottom" },
+          { title: "Left", value: "left" },
+          { title: "Right", value: "right" },
+        ],
+      },
+
     }),
     defineField({
       name: "title",
       type: "string",
     }),
     defineField({
-      name: "image",
-      type: "image",
-      options: {
+      name: 'backgroundImage', type: 'image', title: 'Background Image', options: {
         hotspot: true,
       }, fields: [
         defineField({
@@ -35,23 +37,7 @@ export default defineType({
 
             return !value && parent?.asset?._ref ? 'Alt text is required when an image is present' : true
           }),
-        }),
-        defineField({
-          name: 'altImage',
-          type: "image",
-          title: "Alternative Image (for mobile version)",
-          validation: rule => rule.custom((value, context) => {
-            const parent = context?.parent as { asset?: { _ref?: string } }
-
-            return !value && parent?.asset?._ref ? 'Alt text is required when an image is present' : true
-          }),
-          fields: [
-            defineField({
-              name: 'alt',
-              type: 'string',
-              title: 'Alternative text',
-            }),]
-        }),
+        })
       ]
     }),
     defineField({
