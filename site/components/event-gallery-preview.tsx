@@ -4,35 +4,36 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Calendar, MapPin, Images } from "lucide-react"
 import Link from "next/link"
+import { urlFor } from "@/sanity/image"
 
 interface GalleryImage {
-  src: string
-  alt: string
+  asset: any
+  alt?: string
   caption?: string
+  isFeatured?: boolean
 }
 
-interface EventGallery {
-  id: string
+interface Gallery {
+  _id: string
   title: string
   description: string
   date: string
-  location: string
-  previewImages: GalleryImage[]
-  totalImages: number
-  featured: boolean
+  location?: string
+  slug: { current: string }
+  images: GalleryImage[]
+  categories?: { _id: string; title: string }[]
 }
 
 interface EventGalleryPreviewProps {
-  gallery: EventGallery
+  gallery: Gallery
   reversed?: boolean
 }
 
 export function EventGalleryPreview({ gallery, reversed = false }: EventGalleryPreviewProps) {
-  // TODO: CMS Integration - Handle dynamic image loading and optimization
-  // Example: const optimizedImages = await sanityClient.fetch('*[_type == "image" && gallery._ref == $galleryId]', { galleryId: gallery.id })
-
-  const mainImage = gallery.previewImages[0]
-  const thumbnailImages = gallery.previewImages.slice(1, 4)
+  // Main image is the first image in the array
+  const mainImage = gallery.images?.[0]
+  // Next three images as thumbnails
+  const thumbnailImages = gallery.images?.slice(1, 4) || []
 
   const imageSection = (
     <div className="lg:w-1/2">
@@ -40,7 +41,11 @@ export function EventGalleryPreview({ gallery, reversed = false }: EventGalleryP
         {/* Main Preview Image */}
         <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg mb-4">
           <Image
-            src={mainImage?.src || "/placeholder.svg"}
+            src={
+              mainImage?.asset
+                ? urlFor(mainImage.asset).width(800).height(450).url()
+                : "/placeholder.svg"
+            }
             alt={mainImage?.alt || gallery.title}
             fill
             style={{ objectFit: "cover" }}
@@ -48,7 +53,7 @@ export function EventGalleryPreview({ gallery, reversed = false }: EventGalleryP
           />
           <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1">
             <Images className="h-4 w-4" />
-            {gallery.totalImages}
+            {gallery.images?.length ?? 0}
           </div>
         </div>
 
@@ -57,8 +62,12 @@ export function EventGalleryPreview({ gallery, reversed = false }: EventGalleryP
           {thumbnailImages.map((image, index) => (
             <div key={index} className="relative aspect-video rounded-md overflow-hidden">
               <Image
-                src={image.src || "/placeholder.svg"}
-                alt={image.alt}
+                src={
+                  image.asset
+                    ? urlFor(image.asset).width(300).height(170).url()
+                    : "/placeholder.svg"
+                }
+                alt={image.alt || gallery.title}
                 fill
                 style={{ objectFit: "cover" }}
                 className="transition-opacity duration-300 hover:opacity-80"
@@ -81,42 +90,38 @@ export function EventGalleryPreview({ gallery, reversed = false }: EventGalleryP
               <Calendar className="h-4 w-4" />
               <span className="text-sm">{gallery.date}</span>
             </div>
-            <div className="flex items-center gap-2">
-              <MapPin className="h-4 w-4" />
-              <span className="text-sm">{gallery.location}</span>
-            </div>
+            {gallery.location && (
+              <div className="flex items-center gap-2">
+                <MapPin className="h-4 w-4" />
+                <span className="text-sm">{gallery.location}</span>
+              </div>
+            )}
           </div>
 
           <p className="text-lg text-gray-700 leading-relaxed">{gallery.description}</p>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4">
-          <Link href={`/gallery/${gallery.id}`} passHref>
+          <Link href={`/gallery/${gallery.slug.current}`} passHref>
             <Button
               asChild
               size="lg"
               className="bg-blue-600 hover:bg-blue-700 text-white"
-              onClick={() => {
-                // TODO: CMS Integration - Navigate to dynamic gallery page
-                // Example: router.push(`/gallery/${gallery.slug}`)
-                console.log(`Navigate to gallery: ${gallery.id}`)
-              }}
             >
               View Full Gallery
             </Button>
           </Link>
-          <Button
+          {/* <Button
             variant="outline"
             size="lg"
             className="border-blue-600 text-blue-600 hover:bg-blue-50 bg-transparent"
             onClick={() => {
-              // TODO: CMS Integration - Implement slideshow functionality
-              // Example: openSlideshow(gallery.images)
-              console.log(`Open slideshow for: ${gallery.id}`)
+              // TODO: Implement slideshow functionality
+              // console.log(`Open slideshow for: ${gallery._id}`)
             }}
           >
             Start Slideshow
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>

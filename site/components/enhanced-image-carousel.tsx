@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { urlFor } from "@/sanity/image"
+
 
 interface CarouselImage {
   src: string
@@ -129,7 +131,7 @@ export function EnhancedImageCarousel({ images, autoPlayInterval = 4000 }: Enhan
                   }`}
               >
                 <Image
-                  src={image.src || "/placeholder.svg"}
+                  src={urlFor(image).url() || "/placeholder.svg"}
                   alt={image.alt}
                   fill
                   style={{ objectFit: "cover" }}
@@ -145,7 +147,7 @@ export function EnhancedImageCarousel({ images, autoPlayInterval = 4000 }: Enhan
             onTouchEnd={handleTouchEnd}
           >
             <Image
-              src={currentImage.src || "/placeholder.svg"}
+              src={urlFor(currentImage).url() || "/placeholder.svg"}
               alt={currentImage.alt}
               fill
               style={{ objectFit: "cover" }}
@@ -206,7 +208,7 @@ export function EnhancedImageCarousel({ images, autoPlayInterval = 4000 }: Enhan
                   }`}
               >
                 <Image
-                  src={image.src || "/placeholder.svg"}
+                  src={urlFor(image).url() || "/placeholder.svg"}
                   alt={image.alt}
                   fill
                   style={{ objectFit: "cover" }}

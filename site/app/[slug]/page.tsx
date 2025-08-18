@@ -1,6 +1,7 @@
 // site/app/page.tsx (or [slug]/page.tsx)
 import { PageBuilder } from '@/components/page-sections';
 import { client } from '@/sanity/client'
+import { notFound } from 'next/navigation';
 
 const query = `
   *[_type == "page" && slug.current == $slug][0]{
@@ -37,8 +38,11 @@ export default async function Page({
 }) {
     const data = await client.fetch(query, { slug: (await params).slug })
     // ...
+
+    console.log(data);
+    console.log(!data);
     if (!data) {
-        return <div>Page not found</div>
+        return notFound();
     }
 
     // console.log(data.sections)

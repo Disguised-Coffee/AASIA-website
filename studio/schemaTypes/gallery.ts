@@ -4,6 +4,7 @@ import {TagIcon} from '@sanity/icons'
 export const Gallery = defineType({
   name: 'gallery',
   title: 'Gallery',
+
   type: 'document',
   fields: [
     defineField({
@@ -12,8 +13,14 @@ export const Gallery = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'description',
+      type: 'text',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'slug',
       type: 'slug',
+      description: 'is also the ID',
       options: {
         source: 'title',
       },
@@ -54,6 +61,9 @@ export const Gallery = defineType({
                 return !value && parent?.asset?._ref ? 'Caption is required when an image is present' : true
               }),
             },
+            {
+              name: 'isFeatured', type: 'boolean', title: 'Featured', description: 'Likely to appear first in previews'
+            },
           ],
         },
       ],
@@ -74,7 +84,13 @@ export const categoryType = defineType({
   icon: TagIcon,
   fields: [
     defineField({
+      name: 'name',
+      type: 'string',
+    }),
+    defineField({
       name: 'title',
+      title: 'Display Title',
+      description: 'The title displayed for the category on gallery page',
       type: 'string',
     }),
     defineField({

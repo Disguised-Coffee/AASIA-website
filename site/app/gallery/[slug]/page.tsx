@@ -1,22 +1,8 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import { EnhancedImageCarousel } from "@/components/enhanced-image-carousel"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Calendar, MapPin, ArrowLeft } from "lucide-react"
-
-// TODO: CMS Integration - This would be replaced with dynamic data fetching
-// Example:
-// export async function generateStaticParams() {
-//   const galleries = await sanityClient.fetch('*[_type == "eventGallery"]')
-//   return galleries.map((gallery) => ({ slug: gallery.slug.current }))
-// }
-//
-// export default async function GalleryDetailPage({ params }: { params: { slug: string } }) {
-//   const gallery = await sanityClient.fetch(
-//     '*[_type == "eventGallery" && slug.current == $slug][0]',
-//     { slug: params.slug }
-//   )
+import { client } from "@/sanity/client"
 
 interface GalleryDetailPageProps {
   params: {
@@ -24,44 +10,63 @@ interface GalleryDetailPageProps {
   }
 }
 
-export default function GalleryDetailPage({ params }: GalleryDetailPageProps) {
-  // TODO: CMS Integration - Replace with actual data fetching
-  // This is mock data for demonstration
-  const gallery = {
-    id: params.slug,
-    title: "Annual Gala 2024",
-    description:
-      "Our most prestigious event celebrating Asian American heritage and community achievements. This year's gala brought together over 300 community members, alumni, and supporters for an evening of cultural celebration, networking, and recognition of outstanding contributions to our community.",
-    date: "March 15, 2024",
-    location: "UIC Student Center Ballroom",
-    images: [
-      {
-        src: "/placeholder.svg?height=600&width=800&text=Gala+Image+1",
-        alt: "Opening ceremony",
-        caption: "...",
+// GROQ query to fetch a single gallery by slug, including all relevant fields
+const query = `
+  *[_type == "gallery" && slug.current == $slug][0]{
+    title,
+    description,
+    date,
+    location,
+    images[]{
+      asset->{
+        _id,
+        url
       },
-      {
-        src: "/placeholder.svg?height=600&width=800&text=Gala+Image+2",
-        alt: "Community dinner",
-        caption: "Nothing is here",
-      },
-      {
-        src: "/aasia logo_transparent.png",
-        alt: "Awards ceremony",
-        caption: "OH MY- ITS BAOBAO!!!!",
-      },
-      {
-        src: "/placeholder.svg?height=600&width=800&text=Gala+Image+4",
-        alt: "Cultural performance",
-        caption: "...",
-      },
-      {
-        src: "/placeholder.svg?height=600&width=800&text=Gala+Image+5",
-        alt: "Networking",
-        caption: "something is coming...",
-      },
-    ],
+      alt,
+      caption,
+      isFeatured
+    },
+    categories[]->{
+      _id,
+      title
+    }
   }
+`
+
+export default async function GalleryDetailPage({ params }: GalleryDetailPageProps) {
+  const data = await client.fetch(query, { slug: params.slug })
+
+  if (!data) {
+    return (
+      <div className="flex flex-col min-h-screen pt-40">
+        <section className="container mx-auto max-w-4xl text-center py-24 text-black">
+          <h1 className="text-3xl font-bold mb-4">Gallery Not Found</h1>
+          <p className="mb-8">Sorry, we couldn't find the gallery you're looking for.</p>
+          <Button
+            variant="outline"
+          >
+            <Link href="/gallery" className="text-blue-600 hover:underline">
+              Back to Gallery
+            </Link>
+          </Button>
+        </section>
+        {/* Image - fixed at bottom with proper spacing */}
+        <div className="flex justify-center absolute bottom-0 left-0 right-0">
+          <div className="w-48 h-30 md:w-64 md:h-30 max-h-md relative">
+            <img src="/crying.png" alt="Not Found" className="w-full h-full object-contain" />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Prepare images for the carousel
+  const images = (data.images || []).map((img: any) => ({
+    src: img.asset?.url || "/placeholder.svg",
+    alt: img.alt || data.title,
+    caption: img.caption || "",
+    isFeatured: img.isFeatured,
+  }))
 
   return (
     <div className="flex flex-col min-h-screen pt-25">
@@ -76,28 +81,31 @@ export default function GalleryDetailPage({ params }: GalleryDetailPageProps) {
             Back to Gallery
           </Link>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{gallery.title}</h1>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{data.title}</h1>
 
           <div className="flex flex-col sm:flex-row gap-4 text-gray-600 mb-6">
-            <div className="flex items-center gap-2">
-              <Calendar className="h-5 w-5" />
-              <span>{gallery.date}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <MapPin className="h-5 w-5" />
-              <span>{gallery.location}</span>
-            </div>
+            {data.date && (
+              <div className="flex items-center gap-2">
+                <Calendar className="h-5 w-5" />
+                <span>{data.date}</span>
+              </div>
+            )}
+            {data.location && (
+              <div className="flex items-center gap-2">
+                <MapPin className="h-5 w-5" />
+                <span>{data.location}</span>
+              </div>
+            )}
           </div>
 
-          <p className="text-lg text-gray-700 leading-relaxed">{gallery.description}</p>
+          <p className="text-lg text-gray-700 leading-relaxed">{data.description}</p>
         </div>
       </section>
 
       {/* Image Carousel */}
       <section className="bg-gray-50 py-16 px-4">
         <div className="container mx-auto max-w-6xl">
-          {/* TODO: CMS Integration - Pass dynamic images from CMS */}
-          <EnhancedImageCarousel images={gallery.images} />
+          <EnhancedImageCarousel images={images} />
         </div>
       </section>
 
@@ -105,16 +113,7 @@ export default function GalleryDetailPage({ params }: GalleryDetailPageProps) {
       <section className="bg-white py-12 px-4">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {/* <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-              Download All Photos
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-blue-600 text-blue-600 hover:bg-blue-50 bg-transparent"
-            >
-              Share Gallery
-            </Button> */}
+            {/* Add action buttons here if needed */}
           </div>
         </div>
       </section>
