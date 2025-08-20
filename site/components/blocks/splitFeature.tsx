@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button"
 import type { ReactNode } from "react"
 import { PortableText } from "next-sanity";
 
+// it's actually better if we typegen this later instead.
 interface ContentSectionProps {
     label?: string
     title: string

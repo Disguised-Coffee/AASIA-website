@@ -1,12 +1,12 @@
 import { defineType, defineField, defineArrayMember } from 'sanity'
-import hero from './blocks/hero'
-import splitImageType from './blocks/splitContent'
-// import other blocks...
+
+import {DocumentSheetIcon} from '@sanity/icons'
 
 export default defineType({
   name: 'page',
   type: 'document',
   title: 'Page',
+  icon: DocumentSheetIcon,
   fields: [
     defineField({ name: 'title', type: 'string', title: 'Page Title' }),
     defineField({
@@ -16,6 +16,10 @@ export default defineType({
       of: [
         defineArrayMember({ type: 'hero' }),
         defineArrayMember({ type: 'splitImage' }),
+        defineArrayMember({ type: 'faq' }),
+        defineArrayMember({ type: 'feature' }),
+        defineArrayMember({ type: 'gallerySection' }),
+        defineArrayMember({ type: 'videoSection' }),
         // { type: 'gallery' },
         // { type: 'faq' },
         // ...add other blocks here

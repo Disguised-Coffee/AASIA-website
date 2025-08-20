@@ -1,6 +1,7 @@
 // site/components/page-sections.tsx
 import Hero from './blocks/hero'
 import { SplitFeature } from './blocks/splitFeature';
+import {FeatureSection} from './blocks/feature';
 // import other block components...
 
 export async function PageBuilder({ sections }: { sections: Promise<any[]> }) {
@@ -17,6 +18,8 @@ export async function PageBuilder({ sections }: { sections: Promise<any[]> }) {
           // ...other cases
           case 'splitImage':
             return <SplitFeature key={i} {...section} />  
+          case 'feature':
+            return <FeatureSection key={i} {...section} />
           default:
             return null
         }

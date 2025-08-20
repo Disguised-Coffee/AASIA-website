@@ -6,6 +6,7 @@ interface VideoSectionProps {
   description: string
   videoPlaceholder: string
   backgroundColor?: string
+  videoID: string
 }
 
 
@@ -14,6 +15,7 @@ export function VideoSection({
   description,
   videoPlaceholder,
   backgroundColor = "bg-gray-50",
+  videoID
 }: VideoSectionProps) {
 
 
@@ -27,7 +29,7 @@ export function VideoSection({
 
         <div className="relative max-w-4xl mx-auto">
           {/* Video Placeholder */}
-          <Video title={"EVO 2024 Highlights"} description={" Duration: 8:45 | Featuring performances from 15+ talented students"} videoPlaceholder={videoPlaceholder} YTVideoID={"bHQqvYy5KYo"} />
+          <Video title={"EVO 2024 Highlights"} description={" Duration: 8:45 | Featuring performances from 15+ talented students"} videoPlaceholder={videoPlaceholder} YTVideoID={videoID} />
 
           {/* Video Description */}
           <div className="mt-8 text-center">

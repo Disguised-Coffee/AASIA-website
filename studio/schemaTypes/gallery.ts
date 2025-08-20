@@ -1,10 +1,10 @@
 import { defineField, defineType, defineArrayMember } from 'sanity'
-import {TagIcon} from '@sanity/icons'
+import {ImagesIcon} from '@sanity/icons'
 
 export const Gallery = defineType({
   name: 'gallery',
   title: 'Gallery',
-
+  icon: ImagesIcon,
   type: 'document',
   fields: [
     defineField({
@@ -81,7 +81,7 @@ export const categoryType = defineType({
   name: 'category',
   title: 'Category',
   type: 'document',
-  icon: TagIcon,
+  // icon: TagIcon,
   fields: [
     defineField({
       name: 'name',

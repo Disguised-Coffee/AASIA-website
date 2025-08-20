@@ -2,9 +2,9 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 import { BlockContentIcon } from "@sanity/icons";
 
 export default defineType({
-  name: "splitImage",
+  name: "feature",
   type: "object",
-  title: "Split Image Section",
+  title: "Feature Section",
   fields: [
     defineField({
       name: "orientation",
@@ -41,7 +41,7 @@ export default defineType({
       ]
     }),
     defineField({
-      name: "text",
+      name: "description",
       type: "blockContent",
     }),
     defineField({

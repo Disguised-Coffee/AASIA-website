@@ -25,11 +25,30 @@ export function Footer({ siteSettings }: { siteSettings: any }) {
 
         {/* Social Media Links */}
         <div className="flex space-x-6">
-          {socialLinks.map((social: any, idx: number) => (
-            <a href={social.url} aria-label={social.platform} key={idx} className="text-white hover:text-gray-300 transition-colors">
-              <Image src={social.icon || "/icons/instagram.svg"} width={24} height={24} alt={social.platform} className="h-6 w-6" />
-            </a>
-          ))}
+          {socialLinks.map((social: any, idx: number) => {
+            switch (social.platform) {
+              case 'instagram':
+                return (
+                  <a href={social.url} aria-label={social.platform} key={idx} className="text-white hover:text-gray-300 transition-colors">
+                    <Image src={"icons/instagram.svg"} width={24} height={24} alt={social.platform} className="h-6 w-6" />
+                  </a>
+                ); // Skip Instagram for now
+              case 'discord':
+                return (
+                  <a href={social.url} aria-label={social.platform} key={idx} className="text-white hover:text-gray-300 transition-colors">
+                    <Image src={'/icons/discord.svg'} width={24} height={24} alt={social.platform} className="h-6 w-6" />
+                  </a>
+                ); // Skip Instagram for now
+              case 'groupme':
+                return (
+                  <a href={social.url} aria-label={social.platform} key={idx} className="text-white hover:text-gray-300 transition-colors">
+                    <Image src={"icons/groupme.svg"} width={24} height={24} alt={social.platform} className="h-6 w-6" />
+                  </a>
+                ); // Skip Instagram for now
+              default:
+                return null; // Skip any other platforms not handled
+            }
+          })}
         </div>
 
         {/* Copyright (if wanted) */}

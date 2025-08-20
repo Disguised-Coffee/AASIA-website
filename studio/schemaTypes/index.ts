@@ -5,5 +5,11 @@ import splitImageType from "./blocks/splitContent";
 import { blockContentType } from "./blockContent";
 import button from "./button";
 import { siteSettingsType } from "./siteSettings";
+import feature from "./blocks/feature";
+import gallerySection from "./blocks/gallerySection";
+import faq from "./blocks/faq";
+import homePage from "./homePage";
+import { eBoardCardSchema, eboardSection } from "./eBoardPage";
+import { videoSection } from "./blocks/videoSection";
 
-export const schemaTypes = [Gallery, categoryType, page, hero, splitImageType, blockContentType, button, siteSettingsType]
+export const schemaTypes = [eboardSection, eBoardCardSchema, Gallery, categoryType, page, hero, splitImageType, blockContentType, button, siteSettingsType, feature, gallerySection, faq, homePage, videoSection]
