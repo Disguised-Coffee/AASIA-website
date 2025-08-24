@@ -159,7 +159,7 @@ export default function EboardPage() {
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             Executive Board in Action
           </h2>
-          <EnhancedImageCarousel images={carouselImages} />
+          {/* <EnhancedImageCarousel images={carouselImages} /> */}
         </div>
       </section>
 
