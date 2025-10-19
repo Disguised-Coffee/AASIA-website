@@ -21,6 +21,12 @@ const query = `
             caption,
             isFeatured
           }
+        },
+        videoPlayer->{
+          ...,
+          title,
+          videoID,
+          caption
         }
       }
     }

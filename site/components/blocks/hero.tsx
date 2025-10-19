@@ -13,7 +13,7 @@ export default function Hero(props: any) {
     // console.log(title, subtitle, description, backgroundImage, igPostID)
     // console.log(`Uncaught Rest: ${JSON.stringify(rest)}`)
 
-    console.log("Hero props:", props);
+    // console.log("Hero props:", props);
     switch (props.variation) {
         case "main":
             return (
