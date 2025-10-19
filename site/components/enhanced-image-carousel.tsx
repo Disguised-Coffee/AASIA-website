@@ -131,7 +131,7 @@ export function EnhancedImageCarousel({ images, autoPlayInterval = 4000 }: Enhan
                   }`}
               >
                 <Image
-                  src={urlFor(image.src).url() || "/placeholder.svg"}
+                  src={image ? urlFor(image).url() : "/placeholder.svg"}
                   alt={image.alt}
                   fill
                   style={{ objectFit: "cover" }}
@@ -147,7 +147,7 @@ export function EnhancedImageCarousel({ images, autoPlayInterval = 4000 }: Enhan
             onTouchEnd={handleTouchEnd}
           >
             <Image
-              src={urlFor(currentImage.src).url() || "/placeholder.svg"}
+              src={currentImage ? urlFor(currentImage).url() : "/placeholder.svg"}
               alt={currentImage.alt}
               fill
               style={{ objectFit: "cover" }}
@@ -208,7 +208,7 @@ export function EnhancedImageCarousel({ images, autoPlayInterval = 4000 }: Enhan
                   }`}
               >
                 <Image
-                  src={urlFor(image.src).url() || "/placeholder.svg"}
+                  src={image ? urlFor(image).url() : "/placeholder.svg"}
                   alt={image.alt}
                   fill
                   style={{ objectFit: "cover" }}

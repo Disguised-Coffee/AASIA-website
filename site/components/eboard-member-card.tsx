@@ -1,14 +1,15 @@
 import Image from "next/image"
-import { Mail } from "lucide-react"
 
 interface EboardMember {
   id: number
+  pronouns: string
   name: string
   title: string
   year: string
   major: string
   bio: string
   image: string
+  alt: string
   email: string
 }
 
@@ -17,13 +18,15 @@ interface EboardMemberCardProps {
 }
 
 export function EboardMemberCard({ member }: EboardMemberCardProps) {
+
+  console.log("Eboard Member:", member.image);
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
       {/* Member Image */}
       <div className="relative aspect-square overflow-hidden">
         <Image
-          src={member.image || "/placeholder.svg"}
-          alt={member.name}
+          src={member.image}
+          alt={member.alt || member.name}
           fill
           style={{ objectFit: "cover" }}
           className="transition-transform duration-300 group-hover:scale-105"
@@ -40,19 +43,24 @@ export function EboardMemberCard({ member }: EboardMemberCardProps) {
             <span>{member.year}</span>
             <span>•</span>
             <span>{member.major}</span>
+            <span>•</span>
+          </div>
+          <div className="text-sm text-gray-600">
+            <span>{member.pronouns}</span>
           </div>
         </div>
 
         <p className="text-gray-700 text-sm leading-relaxed mb-4">{member.bio}</p>
 
         {/* Contact */}
-        <div className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors">
+        {/* Comment out for now. */}
+        {/* <div className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors">
           <Mail className="h-4 w-4" />
           <a href={`mailto:${member.email}`} className="text-sm font-medium">
             Contact
           </a>
-        </div>
-      </div>
+        </div>*/}
+      </div> 
     </div>
   )
 }

@@ -1,77 +1,29 @@
-import { Footer } from "@/components/footer"
-import { ContentSection } from "@/components/content-section"
+import { client } from "@/sanity/client"
 import { FAQSection } from "@/components/faq-section"
+import { ContentSection } from "@/components/content-section"
 import { ImageCarousel } from "@/components/image-carousel"
 
-export default function FAQPage() {
-  const generalFAQs = [
-    {
-      question: "What do you do at GBMs? Socials?",
-      answer:
-        "At our General Body Meetings (GBMs), we discuss upcoming events, share important announcements, and engage in community building activities. Our socials include cultural celebrations, game nights, movie screenings, and networking events that help members connect and build lasting friendships.",
-    },
-    {
-      question: "What 'big' events do you host?",
-      answer:
-        "AASIA hosts several major events throughout the year including our Imperial Ball, ImaginAsian [], Asian American Heritage Month celebrations, cultural workshops, community service projects, and collaborative events with other student organizations. We also participate in campus-wide events and host educational panels on Asian American issues.",
-    },
-    {
-      question: "What makes AASIA different from other student orgs on campus?",
-      answer:
-        "AASIA is unique as the oldest Asian American organization at UIC, founded in 1987. We focus specifically on Pan-Asian unity, bringing together students from all Asian backgrounds. Our emphasis on both cultural celebration and social justice advocacy sets us apart, along with our strong alumni network and long-standing campus presence.",
-    },
-    {
-      question: "Do you guys volunteer?",
-      answer:
-        "Yes! Community service is a core part of AASIA's mission. We regularly organize volunteer opportunities including community clean-ups, food drives, tutoring programs, and partnerships with local Asian American community organizations. We believe in giving back to both the campus and broader Chicago community.",
-    },
-    {
-      question: "How can I connect with other members?",
-      answer:
-        "You can connect with AASIA members through our regular GBMs, social events, GroupMe chat, Instagram, and Discord server. We also have study groups, informal hangouts, and mentorship programs that help new members integrate into our community.",
-    },
-    {
-      question: "What is EVO?",
-      answer:
-        "Evolution (or EVO) is AASIA’s no-audition dance group for beginners to advanced. They are dedicated to spreading Asian culture all over UIC. They host practices and perform at AASIA’s Imperial Ball and ImaginAsian. Depending on the progress of the group, they may perform at other events as well!",
-    },
-  ]
+const query = `
+  *[_type == "faqPage"][0]{
+    ...
+  }
+`
 
-  const membershipFAQs = [
-    {
-      question: "Is there a membership fee?",
-      answer:
-        "No, AASIA membership is completely free! We believe in making our organization accessible to all students regardless of their financial situation. All of our events and activities are open to members at no cost.",
-    },
-    {
-      question: "Am I still a member if I can't attend GBMs?",
-      answer:
-        "We understand that students have busy schedules. While we encourage attendance at GBMs to stay connected with the community, you remain a member regardless of attendance. We share meeting notes and updates through our digital channels.",
-    },
-    {
-      question: "Is the organization only for Asians/Asian Americans?",
-      answer:
-        "While AASIA focuses on Asian American issues and culture, we welcome all students who are interested in learning about and supporting our community. Our organization is inclusive and values diverse perspectives and allyship.",
-    },
-    {
-      question: "I want to be more than a general member. Are there any opportunities?",
-      answer:
-        "Yes! We offer various leadership opportunities including executive board positions, committee chairs, event coordinators, and mentorship roles. We also have special interest groups and project teams that allow members to take on more responsibility and develop leadership skills.",
-    },
-  ]
+export default async function FAQPage() {
+  const data = await client.fetch(query)
 
-  const informationFAQs = [
-    {
-      question: "Where can I get updates about AASIA?",
-      answer:
-        "Stay updated through our Instagram (@aasia_uic), GroupMe chat, Discord server, and email newsletters. We also post announcements during GBMs and on campus bulletin boards. Follow our social media for the most current information about events and activities.",
-    },
-    {
-      question: "Who can I contact if I have a question?",
-      answer:
-        "You can reach out to our executive board through our official email, Instagram DMs, or approach any board member at our events. We also have designated office hours where board members are available to answer questions and provide support to members.",
-    },
-  ]
+  console.log(await data)
+
+  // Fallback for About section and carousel images (can be moved to Sanity too)
+  const aboutSection = {
+    label: "AASIA",
+    title: "About Us",
+    description:
+      "Asian American Students in Alliance (AASIA) is the oldest Asian American organization at UIC, founded as a Pan-Asian organization in 1987. We aim to increase Asian American awareness and address issues surrounding the Asian American community through our cultural workshops, events, performances, services, and social gatherings. AASIA provides a place where you can learn more about Asian American identity and awareness.",
+    imageSrc: "/aasia logo_transparent.png",
+    imageAlt: "AASIA Logo",
+    backgroundColor: "bg-white",
+  }
 
   const carouselImages = [
     {
@@ -114,14 +66,7 @@ export default function FAQPage() {
   return (
     <div className="flex-1 pt-20 flex-col min-h-screen">
       {/* About Section */}
-      <ContentSection
-        label="AASIA"
-        title="About Us"
-        description="Asian American Students in Alliance (AASIA) is the oldest Asian American organization at UIC, founded as a Pan-Asian organization in 1987. We aim to increase Asian American awareness and address issues surrounding the Asian American community through our cultural workshops, events, performances, services, and social gatherings. AASIA provides a place where you can learn more about Asian American identity and awareness."
-        imageSrc="/aasia logo_transparent.png"
-        imageAlt="AASIA Logo"
-        backgroundColor="bg-white"
-      />
+      <ContentSection {...aboutSection} />
 
       {/* FAQ Section */}
       <section className="bg-white py-16 px-4">
@@ -129,11 +74,17 @@ export default function FAQPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-12">
             Frequently Asked Questions
           </h1>
-
           <div className="space-y-12">
-            <FAQSection title="General" faqs={generalFAQs} />
-            <FAQSection title="Membership" faqs={membershipFAQs} />
-            <FAQSection title="Information" faqs={informationFAQs} />
+            {data?.faqSections?.map((section: any, idx: number) => (
+              <FAQSection
+                key={idx}
+                title={section.title}
+                faqs={section.faqSection.map((faq: any) => ({
+                  question: faq.question,
+                  answer: faq.answer // fallback for blockContent
+                }))}
+              />
+            ))}
           </div>
         </div>
       </section>

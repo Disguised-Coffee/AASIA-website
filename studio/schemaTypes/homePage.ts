@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import {HomeIcon} from "@sanity/icons";
+import { HomeIcon } from "@sanity/icons";
 
 export default defineType({
   name: "homePage",
@@ -8,19 +8,18 @@ export default defineType({
   description: "The main landing page of the site. The 'Slug' form can be ignored",
   icon: HomeIcon,
   fields: [
-    // reference to the page document
+    // we can't make variations :C
+    defineField({ name: 'title', type: 'string', title: 'Page Title' }),
     defineField({
-      name: "page",
-      title: "Page",
-      type: "reference",
-      to: [{ type: "page" }],
+      name: "content",
+      type: "pageBuilder",
     }),
   ],
-  preview: {
-    prepare() {
-      return {
-        title: "Home Page",
-      };
-    },
-  },
+  // preview: {
+  //   prepare() {
+  //     return {
+  //       title: "Home Page",
+  //     };
+  //   },
+  // },
 });

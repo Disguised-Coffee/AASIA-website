@@ -24,13 +24,14 @@ export default defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
-    defineField({
-      name:'buttonSection',
-      type: 'array',
-      of: [
-        defineArrayMember({ type: 'button' })
-      ],
-    }),
+    // I forgot why I added this initially.[]
+    // defineField({
+    //   name:'buttonSection',
+    //   type: 'array',
+    //   of: [
+    //     defineArrayMember({ type: 'button' })
+    //   ],
+    // }),
     defineField({
       name: 'galleryRef',
       type: 'reference',

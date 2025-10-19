@@ -3,48 +3,6 @@ import Image from "next/image"
 import { Button } from "./ui/button"
 import { urlFor } from "@/sanity/image";
 
-
-// to fix hydration error
-import { useEffect } from "react"
-function InstagramEmbed({ postId }: { postId: string }) {
-    useEffect(() => {
-        // Only run on the client
-        if (typeof window !== "undefined") {
-            // Check if the script is already present
-            if (!document.querySelector('script[src="//www.instagram.com/embed.js"]')) {
-                const script = document.createElement("script")
-                script.src = "//www.instagram.com/embed.js"
-                script.async = true
-                document.body.appendChild(script)
-
-            }
-            // If script is already loaded, reparse embeds
-            // theres an error that shows "Uncaught ReferenceError: instgrm is not defined"
-            // this should be fine for now.... []
-            else if (window.instgrm !== "undefined") {
-                // If script is already loaded, reparse embeds
-                window.instgrm.Embeds.process()
-            }
-        }
-    }, [])
-
-    return (
-        <iframe
-            src={`https://www.instagram.com/p/${postId}/embed/`}
-            className="overflow-hidden border-none rounded-lg"
-            style={{
-                maxWidth: "100%",
-                minHeight: 480,
-                overflow: "hidden",
-                scrollbarWidth: "none",
-            }}
-            allowtransparency="true"
-
-        ></iframe>
-    )
-}
-
-
 // [] Need to get types and props properly!
 export default function Hero(props: any) {
 
@@ -62,7 +20,7 @@ export default function Hero(props: any) {
                 <section className="relative py-20 px-4 min-h-[80vh] flex items-center pt-40 sm:pt-32 justify-center">
                     <div className="absolute inset-0 z-0 opacity-25">
                         <Image
-                            src={urlFor(props.backgroundImage).url() || "/default-hero-image.jpg"} // Fallback image
+                            src={(props.backgroundImage ? urlFor(props.backgroundImage).url() : "/aasia_banner_logo_official.png")} // Fallback image
                             alt={props.backgroundImage?.alt || "Hero Background"}
                             fill
                             className="object-cover"
@@ -99,7 +57,7 @@ export default function Hero(props: any) {
 
                                 {/* Right Content - Placeholder for Graphics */}
                                 <div className="flex items-center justify-center h-[570px]">
-                                    <InstagramEmbed postId="DJ13SqlxIi3" />
+                                    
                                 </div>
                             </div>
                         </div>
