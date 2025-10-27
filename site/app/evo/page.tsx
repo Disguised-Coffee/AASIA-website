@@ -1,8 +1,3 @@
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { ContentSection } from "@/components/content-section"
-import { VideoSection } from "@/components/video-section"
-import { GalleryPreview } from "@/components/gallery-preview"
 import { client } from "@/sanity/client"
 import notFound from "../not-found"
 import { PageBuilder } from "@/components/page-sections"
