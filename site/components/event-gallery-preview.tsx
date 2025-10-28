@@ -2,9 +2,11 @@
 
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Calendar, MapPin, Images } from "lucide-react"
+import { Images } from "lucide-react"
 import Link from "next/link"
-import { urlFor } from "@/sanity/image"
+
+const withParams = (url?: string, params?: string) =>
+  url ? `${url}${params ? (url.includes("?") ? "&" : "?") + params : ""}` : "/placeholder.svg"
 
 interface GalleryImage {
   asset: any
@@ -43,7 +45,7 @@ export function EventGalleryPreview({ gallery, reversed = false }: EventGalleryP
           <Image
             src={
               mainImage?.asset
-                ? urlFor(mainImage.asset).width(800).height(450).url()
+                ? withParams(mainImage.asset?.url, "w=800&h=450&fit=crop&auto=format")
                 : "/placeholder.svg"
             }
             alt={mainImage?.alt || gallery.title}
@@ -64,7 +66,7 @@ export function EventGalleryPreview({ gallery, reversed = false }: EventGalleryP
               <Image
                 src={
                   image.asset
-                    ? urlFor(image.asset).width(300).height(170).url()
+                    ? withParams(image.asset?.url, "w=300&h=170&fit=crop&auto=format")
                     : "/placeholder.svg"
                 }
                 alt={image.alt || gallery.title}

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Images } from "lucide-react"
 import Link from "next/link"
 
+
 interface GalleryImage {
   src: string
   alt: string

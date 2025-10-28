@@ -30,7 +30,9 @@ const galleryQuery = `
     location,
     slug,
     images[]{
-      asset,
+      asset->{
+        url
+      },
       alt,
       caption,
       isFeatured
@@ -52,11 +54,11 @@ const categoryQuery = `
 `
 
 export default async function GalleryPage() {
-  // Fetch galleries and categories from Sanity
   const galleries: Gallery[] = await client.fetch(galleryQuery)
-  const categories: { _id: string; title: string; description?: string }[] = await client.fetch(categoryQuery)
+  const categories: { _id: string; title: string; description?: string }[] =
+    await client.fetch(categoryQuery)
 
   return (
-    <GalleryPageClient galleries={galleries} categories={categories} />
+    <GalleryPageClient galleries={galleries ?? []} categories={categories ?? []} />
   )
 }
