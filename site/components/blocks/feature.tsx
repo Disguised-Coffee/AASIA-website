@@ -99,7 +99,7 @@ export function FeatureSection(props: any) {
                                         variant={button.variant}
                                         className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3"
                                     >
-                                        <Link href={button.link}>{button.text}</Link>
+                                        <Link href={button.link || ""}>{button.text}</Link>
                                     </Button>
                                 ))}
                             </div>
@@ -115,7 +115,7 @@ export function FeatureSection(props: any) {
             {/* Background Image */}
             <div className="absolute inset-0 z-10">
                 <Image
-                    src="aasia_banner_logo_official.png"
+                    src={props.backgroundImage ? urlFor(props.backgroundImage).url() : "aasia_banner_logo_official.png"}
                     alt="E-Board background"
                     fill
                     style={{ objectFit: "cover" }}

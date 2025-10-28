@@ -34,7 +34,7 @@ const query = `
 `
 
 export default async function GalleryDetailPage({ params }: GalleryDetailPageProps) {
-  const data = await client.fetch(query, { slug: params.slug })
+  const data = await client.fetch(query, { slug: (await params).slug })
 
   if (!data) {
     return (

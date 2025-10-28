@@ -1,39 +1,34 @@
-import { defineArrayMember, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const eboardSection = defineType({
     name: "eBoardPage",
     title: "E-Board Page",
     type: "document",
-    
+
     fields: [
-        // {
-        //     name: "title",
-        //     title: "Title",
-        //     description: "Unintended namespace",
-        //     type: "string",
-        //     validation: (Rule) => Rule.required()
-        // },
-        {
-            name: "caption",
-            title: "Caption",
-            type: "string",
-            validation: (Rule) => Rule.required()
-        },
-        {
+        defineField({
             name: "title",
             title: "Title",
             type: "text",
             validation: (Rule) => Rule.required()
-        },
-        {
+        }),
+        defineField({
+            name: "caption",
+            title: "Caption",
+            type: "string",
+            validation: (Rule) => Rule.required()
+        }),
+        defineField({
             name: "eBoardCards",
             title: "E-Board Cards",
             type: "array",
-            of: [defineArrayMember({
-                type: "reference",
-                to: [{ type: "eboardCardSchema" }],
-            })]
-        }
+            of: [{ type: "reference", to: [{ type: "eboardCardSchema" }] }],
+            validation: (Rule) => Rule.required()
+        }),
+        defineField({
+            name: "content",
+            type: "pageBuilder",
+        }),
     ]
 });
 
@@ -45,7 +40,7 @@ export const eBoardCardSchema = defineType({
     fields: [
         {
             name: "name",
-            title: "Text",
+            title: "Name",
             type: "string",
             validation: (Rule) => Rule.required()
         },

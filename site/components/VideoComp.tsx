@@ -15,14 +15,14 @@ declare global {
 interface VideoProps {
   title: string
   description: string
-  videoPlaceholder: string
+  // videoPlaceholder: string
   YTVideoID?: string
 }
 
 export const Video = ({
   title,
   description,
-  videoPlaceholder,
+  // videoPlaceholder,
   YTVideoID = "bHQqvYy5KYo" // Default video ID, 2011 Google I/O Keynote for iFrame
 }: VideoProps) => {
   const iframeRef = useRef<HTMLDivElement>(null)
@@ -89,7 +89,7 @@ export const Video = ({
 
     <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl bg-gray-900">
       <Image
-        src={videoPlaceholder || "/placeholder.svg"}
+        src={"/placeholder.svg"} // src={videoPlaceholder || "/placeholder.svg"}
         alt="Video thumbnail"
         fill
         style={{ objectFit: "cover" }}

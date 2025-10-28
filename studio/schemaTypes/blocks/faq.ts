@@ -9,32 +9,17 @@ export default defineType({
     fields: [
         defineField({ name: 'title', type: 'string', title: 'Title', validation: (Rule) => Rule.required().max(100) }),
         defineField({
-            name: 'faqBlock',
-            type: 'object',
-            title: 'FAQ Block',
-            fields: [
-                defineField({
-                    name: 'question',
-                    type: 'text',
-                    title: 'Question',
-                }),
-                defineField({
-                    name: 'answer',
-                    type: 'blockContent',
-                    title: 'Answer',
-                })
-            ]
-        }),
-        // buttons.
-        defineField({
-            name: 'buttons',
+            name: 'faqSection',
             type: 'array',
-            title: 'Buttons',
-            of: [
-                defineArrayMember({ type: 'button' })
-            ],
+            title: 'FAQ Block',
+            of: [defineArrayMember({
+                type: 'object',
+                fields: [
+                    defineField({ name: 'question', type: 'text', title: 'Question' }),
+                    defineField({ name: 'answer', type: 'blockContent', title: 'Answer' }),
+                ]
+            }),]
         }),
-
     ],
     icon: BlockContentIcon,
 })

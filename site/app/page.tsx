@@ -3,12 +3,22 @@ import { PageBuilder } from '@/components/page-sections'
 import { client } from '@/sanity/client'
 import { notFound } from 'next/navigation'
 
+
+// these queries should be elsewhere, but for now...
 const query = `
   *[_type == "homePage"][0]{
-    page->{
-      title,
-      sections[]{
-        ...
+    content[]{
+      ...,
+      galleryRef->{
+        title,
+        images[]{
+          asset->{
+            url
+          },
+          alt,
+          caption,
+          isFeatured
+        }
       }
     }
   }
@@ -20,14 +30,14 @@ export default async function HomePage() {
   console.log(data)
 
   // If no homepage or no referenced page, show 404
-  if (!data?.page) {
+  if (!data?.content) {
     notFound()
   }
 
   return (
     <div>
-      <h1>{data.page.title}</h1>
-      <PageBuilder sections={data.page.sections} />
+      {/* <h1>{data.content}</h1> */}
+      <PageBuilder sections={data.content} />
     </div>
   )
 }

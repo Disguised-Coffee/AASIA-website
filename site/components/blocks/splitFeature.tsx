@@ -71,7 +71,7 @@ export function SplitFeature(props: any) {
         <div className="flex items-center justify-center">
             <div className="relative w-full max-w-md aspect-square">
                 <Image
-                    src={!isMobile ? (urlFor(props.image).url() || "/aasia_circle_logo.png") : (urlFor(props.image).url() || "/aasia_banner_logo_official.png")} // Fallback image
+                    src={!isMobile ? ((props.image && urlFor(props.image).url()) || "/aasia_circle_logo.png") : ((props.image && urlFor(props.image).url()) || "/aasia_banner_logo_official.png")} // Fallback image
                     alt={props.image?.alt || "Hero Background"}
                     fill
                     className="object-contain"

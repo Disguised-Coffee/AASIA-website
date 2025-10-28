@@ -23,16 +23,27 @@ export const videoSection = defineType({
       group: 'content',
     }),
     defineField({
-      name: 'youtubeVideoID',
+      name: 'videoPlayer',
+      type: 'reference',
+      to: [{ type: 'videoPlayerSection' }],
+    }),
+  ],
+})
+
+export const videoPlayerSection = defineType({
+  name: 'videoPlayerSection',
+  title: 'Video Player Section',
+  description: 'A simple block for embedding a video player with a caption.',
+  type: 'document',
+  fields: [
+    defineField({
+      name: 'title',
       type: 'string',
-      group: 'videoContent',
-      description: 'The YouTube video ID for the event highlights.',
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'videoTitle',
+      name: 'videoID',
       type: 'string',
-      group: 'videoContent',
       validation: (rule) => rule.required(),
     }),
     defineField({
