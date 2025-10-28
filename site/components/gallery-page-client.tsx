@@ -44,25 +44,24 @@ export default function GalleryPageClient({ galleries, categories }: GalleryPage
     const filteredGalleries = useMemo(() => {
         if (activeCategory === "all") return galleries
         return galleries.filter((gallery) =>
-            gallery.categories?.some((cat) => cat.title === activeCategory)
+            Array.isArray(gallery.categories)
+                ? gallery.categories.some((cat) => cat.title === activeCategory)
+                : false
         )
     }, [activeCategory, galleries])
-
-    const categoryDescriptions = categories.reduce((acc, cat) => {
-        acc[cat.title] = cat.description ?? "";
-        return acc;
-    }, {} as Record<string, string>);
-
 
     // Compute gallery counts per category
     const galleryCounts: Record<string, number> = {
         all: galleries.length,
-        "Featured Events": galleries.filter(g => g.featured || g.images.some(img => img.isFeatured)).length,
+        "Featured Events": galleries.filter(g =>
+            Boolean(g.featured) || (Array.isArray(g.images) && g.images.some(img => Boolean(img?.isFeatured)))
+        ).length,
     };
 
     categories.forEach(cat => {
         galleryCounts[cat.title] = galleries.filter(gallery =>
-            gallery.categories?.some(c => c.title === cat.title)
+            Array.isArray(gallery.categories) &&
+            gallery.categories.some((c) => c?.title === cat.title)
         ).length;
     });
 

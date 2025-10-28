@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,17 +10,12 @@
 }
 
 @keyframes wiggle {
-  0%,
-  100% {
-    transform: rotate(-3deg);
-  }
-  50% {
-    transform: rotate(3deg);
-  }
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
 }
 
+/* Move design tokens into a base layer so Tailwind processes them reliably */
 @layer base {
-  /* light theme variables */
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -55,7 +52,7 @@
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
+    --primary: #a9d8ff;
     --primary-foreground: 0 0% 9%;
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
@@ -84,6 +81,7 @@ body {
   background: white;
 }
 
+/* custom utilities kept in utilities layer so @apply works and Tailwind sees them */
 @layer utilities {
   .container {
     @apply mx-auto px-4 sm:px-6 lg:px-8;
