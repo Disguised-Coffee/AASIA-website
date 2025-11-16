@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   },
 }
 
+// 
+
 const defaultSiteSettings = {
   headerLogo: [
     { asset: { url: "/aasia logo_transparent.png" }, alt: "AASIA Logo" },
@@ -37,7 +39,7 @@ const defaultSiteSettings = {
     { label: "FAQ", href: "/faq" },
     { label: "E-Board", href: "/e-board" },
     { label: "EVO", href: "/evo" },
-    { label: "Gallery", href: "/gallery" }
+    // { label: "Gallery", href: "/gallery" }
   ],
   socialLinks: [
     { platform: "GroupMe", url: "#", icon: "/icons/groupme.svg" },

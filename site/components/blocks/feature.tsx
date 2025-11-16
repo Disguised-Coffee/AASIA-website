@@ -55,11 +55,11 @@ export function FeatureSection(props: any) {
                                     Cultural Showcase
                                     </div> */}
                                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">
-                                        EVO: Evolution
+                                        {props.title}
                                     </h2>
-                                    <p className="text-lg text-gray-700 leading-relaxed">
-                                        Are you interested in dancing? Do you want to learn about new dance styles from all over Asia? Are you a beginner or advanced performer? Feel free to join Evolution (or EVO)! We are a no-audition dance group dedicated to spreading Asian culture all over UIC!
-                                    </p>
+                                    <div className="text-lg text-gray-700 leading-relaxed">
+                                        <PortableText value={props.description} />
+                                    </div>
                                 </div>
                                 <div className="justify-center flex">
                                     <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3">

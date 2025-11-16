@@ -60,13 +60,13 @@ export function Header({ siteSettings }: { siteSettings: any }) {
           </Button>
         </Link>
       ))}
-      <SimpleDropdown>
+      {/* <SimpleDropdown>
         {galleryLinks.map((ele:any, index:number) => (
           <Link href={ele.href} passHref key={index}>
             <Button
               onClick={() => setIsMenuOpen(false)}
               variant="ghost"
-              className="w-full justify-start relative flex select-none items-center rounded-sm px-2 py-1.5 text-sm transition-colors hover:bg-gray-100"
+              className="w-full justify-start relative flex select-none text-gray-700 items-center rounded-sm px-2 py-1.5 text-sm transition-colors hover:bg-gray-100"
             >
               {ele.label}
             </Button>
@@ -80,18 +80,16 @@ export function Header({ siteSettings }: { siteSettings: any }) {
             More photos soon!
           </Button>
         </div>
+      </SimpleDropdown> */}
 
-        {/* <Link href="/contact" passHref>
-          <Button variant="ghost" className="w-full justify-start relative flex select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 pl-8">Contact</Button>
-        </Link> */}
-      </SimpleDropdown>
+
     </>
   )
   
   return (
     <header
       ref={contentRef}
-      className={`fixed top-0 left-0 right-0 z-50 p-2 transition-colors duration-300 ease-in-out bg-primary flex justify-between items-center`}
+      className="bg-aasia fixed top-0 left-0 right-0 z-50 p-2 transition-colors duration-300 ease-in-out flex justify-between items-center"
     >
       <Link href="/" passHref className="flex items-center ml-4 bg-transparent hover:bg-white/10 rounded-xl px-2">
         {headerLogo.map((logo: any, idx: number) => (
@@ -107,7 +105,7 @@ export function Header({ siteSettings }: { siteSettings: any }) {
       </Link>
 
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex items-center space-x-4">
+      <nav className="hidden md:flex items-center space-x-4 pr-10">
         {navLinks}
       </nav>
 

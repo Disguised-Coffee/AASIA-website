@@ -56,3 +56,5 @@ dist
 # Dotenv and similar local-only files
 *.local
 studio/env.ts
+
+*.code-workspace
