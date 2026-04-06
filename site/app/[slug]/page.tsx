@@ -38,14 +38,9 @@ export default async function Page({
 }) {
     const data = await client.fetch(query, { slug: (await params).slug })
     // ...
-
-    console.log(data);
-    console.log(!data);
     if (!data) {
         return notFound();
     }
-
-    // console.log(data.sections)
     return (
         <div>
             <h1>{data.title}</h1>

@@ -18,8 +18,6 @@ interface EboardMemberCardProps {
 }
 
 export function EboardMemberCard({ member }: EboardMemberCardProps) {
-
-  console.log("Eboard Member:", member.image);
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
       {/* Member Image */}

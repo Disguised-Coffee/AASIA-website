@@ -12,8 +12,6 @@ const query = `
 export default async function FAQPage() {
   const data = await client.fetch(query)
 
-  console.log(await data)
-
   // Fallback for About section and carousel images (can be moved to Sanity too)
   const aboutSection = {
     label: "AASIA",

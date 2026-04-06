@@ -17,8 +17,6 @@ interface FAQSectionProps {
 export function FAQSection({ title, faqs }: FAQSectionProps) {
   const [openItems, setOpenItems] = useState<number[]>([])
 
-  console.log(faqs.map(faq => faq.answer))
-
   const toggleItem = (index: number) => {
     setOpenItems((prev) => (prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]))
   }

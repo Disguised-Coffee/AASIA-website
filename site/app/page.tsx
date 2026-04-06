@@ -27,8 +27,6 @@ const query = `
 export default async function HomePage() {
   const data = await client.fetch(query)
 
-  console.log(data)
-
   // If no homepage or no referenced page, show 404
   if (!data?.content) {
     notFound()

@@ -20,12 +20,6 @@ const query = `
 export default async function EboardPage() {
   const data = await client.fetch(query)
 
-  console.log(data);
-
-  data.eBoardCards?.forEach((member: any) => {
-    console.log(member.image);
-  })
-
   return (
     <div className="flex-1 flex-col min-h-screen">
       {/* Hero Section */}
